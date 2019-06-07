@@ -13,7 +13,7 @@ namespace BenchmarkExamples
     [MemoryDiagnoser]
     public class JsonSerializerBenchmark
     {
-        string xmlString = @"<info>
+        string xmlString = @"<xmlinfo>
    <about>Occaecat tempor id ad culpa anim.Eiusmod sit commodo exercitation occaecat dolor commodo ullamco velit. Fugiat mollit esse id proident.</about>
    <address>693 Duffield Street, Moraida, Wisconsin, 1658</address>
    <age>36</age>
@@ -56,7 +56,7 @@ namespace BenchmarkExamples
       <element>sint</element>
       <element>consectetur</element>
    </tags>
-</info>";
+</xmlinfo>";
         string jsonString = @"{
 	        'id': '5cf72414b97023feed70111c',
 	        'index': 0,
@@ -105,12 +105,30 @@ namespace BenchmarkExamples
         [Params(100)]
         public int N;
 
+        [GlobalSetup]
+        public void prepareDataFiles()
+        {
+            //creating file for protobuf to read
+            var parsedObject = JsonConvert.DeserializeObject<ProtoInfo>(jsonString);
+            using (var file = File.Create("info.bin"))
+            {
+                Serializer.Serialize(file, parsedObject);
+            }
+
+            //creating file for json parser
+            File.WriteAllText("info.json", jsonString);
+
+            //creating file for xml parser
+            File.WriteAllText("info.xml", xmlString);
+        }
+
         [Benchmark]
         public void JsonTest()
         {
             for (int i = 0; i < N; i++)
             {
-                var json = JObject.Parse(jsonString);
+                var jsonInfo = File.ReadAllText("info.json");
+                var json = JObject.Parse(jsonInfo);
 
                 var id = json["id"];
                 var index = json["index"];
@@ -145,7 +163,8 @@ namespace BenchmarkExamples
         {
             for (int i = 0; i < N; i++)
             {
-                var parsedObject = JsonConvert.DeserializeObject<Info>(jsonString);
+                var jsonInfo = File.ReadAllText("info.json");
+                var parsedObject = JsonConvert.DeserializeObject<Info>(jsonInfo);
                 var id = parsedObject.id;
                 var index = parsedObject.index;
                 var guid = parsedObject.guid;
@@ -179,12 +198,12 @@ namespace BenchmarkExamples
         {
             for (int i = 0; i < N; i++)
             {
+                var xmlInfo = File.ReadAllText("info.xml");
                 var xRoot = new XmlRootAttribute();
-                xRoot.ElementName = "info";
-                xRoot.IsNullable = true;
+                xRoot.ElementName = "xmlinfo";
                 var serializer = new XmlSerializer(typeof(Info), xRoot);
                 Info info = null;
-                using (TextReader reader = new StringReader(xmlString))
+                using (TextReader reader = new StringReader(xmlInfo))
                 {
                     info = (Info)serializer.Deserialize(reader);
                 }
@@ -219,11 +238,36 @@ namespace BenchmarkExamples
         [Benchmark]
         public void ProtoBufXmlTest()
         {
+
+            //    var parsedObject = JsonConvert.DeserializeObject<ProtoInfo>(jsonString);
+
+            //    using (var file = File.Create("info.bin"))
+            //    {
+            //        Serializer.Serialize(file, parsedObject);
+            //    }
+
+            //ProtoInfo newInfo;
+            //using (var file = File.OpenRead("info.bin"))
+            //{
+            //    newInfo = Serializer.Deserialize<ProtoInfo>(file);
+            //}
+            //byte[] msgOut;
+            //using (var stream = new MemoryStream())
+            //{
+            //    Serializer.Serialize(stream, parsedObject);
+            //    msgOut = stream.GetBuffer();
+            //};
+            //string converted = Encoding.UTF8.GetString(msgOut, 0, msgOut.Length);
+
+            //var memoryStream = new MemoryStream(msgOut);
+            //var infoObject = Serializer.Deserialize<ProtoInfo>(memoryStream);
             for (int i = 0; i < N; i++)
             {
-                byte[] arr = Convert.FromBase64String(xmlString);
-                var memoryStream = new MemoryStream(arr);
-                var info = Serializer.Deserialize<XmlInfo>(memoryStream);
+                ProtoInfo info;
+                using (var file = File.OpenRead("info.bin"))
+                {
+                    info = Serializer.Deserialize<ProtoInfo>(file);
+                }
                 var id = info.id;
                 var index = info.index;
                 var guid = info.guid;
@@ -287,8 +331,9 @@ namespace BenchmarkExamples
         public string greeting { get; set; }
         public string favoriteFruit { get; set; }
     }
+
     [ProtoContract]
-    public class XmlName
+    public class ProtoName
     {
         [ProtoMember(1)]
         public string first { get; set; }
@@ -296,7 +341,7 @@ namespace BenchmarkExamples
         public string last { get; set; }
     }
     [ProtoContract]
-    public class XmlFriend
+    public class ProtoFriend
     {
         [ProtoMember(1)]
         public int id { get; set; }
@@ -304,7 +349,7 @@ namespace BenchmarkExamples
         public string name { get; set; }
     }
     [ProtoContract]
-    public class XmlInfo
+    public class ProtoInfo
     {
         [ProtoMember(1)]
         public string id { get; set; }
@@ -323,7 +368,7 @@ namespace BenchmarkExamples
         [ProtoMember(8)]
         public string eyeColor { get; set; }
         [ProtoMember(9)]
-        public XmlName name { get; set; }
+        public ProtoName name { get; set; }
         [ProtoMember(10)]
         public string company { get; set; }
         [ProtoMember(11)]
@@ -341,7 +386,7 @@ namespace BenchmarkExamples
         [ProtoMember(17)]
         public string[] tags { get; set; }
         [ProtoMember(18)]
-        public XmlFriend[] friends { get; set; }
+        public ProtoFriend[] friends { get; set; }
         [ProtoMember(19)]
         public string greeting { get; set; }
         [ProtoMember(20)]

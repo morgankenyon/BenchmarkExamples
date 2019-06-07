@@ -11,6 +11,7 @@ namespace BenchmarkExamples
             //var json = new JsonSerializerBenchmark();
             //try
             //{
+            //    json.N = 1;
             //    json.XmlTest();
             //}
             //catch (Exception e)
