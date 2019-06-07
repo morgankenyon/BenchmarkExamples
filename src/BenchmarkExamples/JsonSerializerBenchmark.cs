@@ -1,6 +1,7 @@
 ﻿using BenchmarkDotNet.Attributes;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using ProtoBuf;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -214,6 +215,42 @@ namespace BenchmarkExamples
                 var favoriteFruit = info.favoriteFruit;
             }
         }
+
+        [Benchmark]
+        public void ProtoBufXmlTest()
+        {
+            for (int i = 0; i < N; i++)
+            {
+                byte[] arr = Convert.FromBase64String(xmlString);
+                var memoryStream = new MemoryStream(arr);
+                var info = Serializer.Deserialize<XmlInfo>(memoryStream);
+                var id = info.id;
+                var index = info.index;
+                var guid = info.guid;
+                var isActive = info.isActive;
+                var balance = info.balance;
+                var picture = info.picture;
+                var age = info.age;
+                var eyeColor = info.eyeColor;
+                var name = info.name;
+                var firstName = name.first;
+                var lastName = name.last;
+                var company = info.company;
+                var email = info.email;
+                var phone = info.phone;
+                var address = info.address;
+                var about = info.about;
+                var latitude = info.latitude;
+                var longitude = info.longitude;
+                var tags = info.tags;
+                var friends = info.friends;
+                var friendZero = friends[0];
+                var friendOne = friends[1];
+                var friendTwo = friends[2];
+                var greeting = info.greeting;
+                var favoriteFruit = info.favoriteFruit;
+            }
+        }
     }
 
 
@@ -249,6 +286,65 @@ namespace BenchmarkExamples
         public Friend[] friends { get; set; }
         public string greeting { get; set; }
         public string favoriteFruit { get; set; }
-
+    }
+    [ProtoContract]
+    public class XmlName
+    {
+        [ProtoMember(1)]
+        public string first { get; set; }
+        [ProtoMember(2)]
+        public string last { get; set; }
+    }
+    [ProtoContract]
+    public class XmlFriend
+    {
+        [ProtoMember(1)]
+        public int id { get; set; }
+        [ProtoMember(2)]
+        public string name { get; set; }
+    }
+    [ProtoContract]
+    public class XmlInfo
+    {
+        [ProtoMember(1)]
+        public string id { get; set; }
+        [ProtoMember(2)]
+        public int index { get; set; }
+        [ProtoMember(3)]
+        public Guid guid { get; set; }
+        [ProtoMember(4)]
+        public bool isActive { get; set; }
+        [ProtoMember(5)]
+        public string balance { get; set; }
+        [ProtoMember(6)]
+        public string picture { get; set; }
+        [ProtoMember(7)]
+        public int age { get; set; }
+        [ProtoMember(8)]
+        public string eyeColor { get; set; }
+        [ProtoMember(9)]
+        public XmlName name { get; set; }
+        [ProtoMember(10)]
+        public string company { get; set; }
+        [ProtoMember(11)]
+        public string email { get; set; }
+        [ProtoMember(12)]
+        public string phone { get; set; }
+        [ProtoMember(13)]
+        public string address { get; set; }
+        [ProtoMember(14)]
+        public string about { get; set; }
+        [ProtoMember(15)]
+        public string latitude { get; set; }
+        [ProtoMember(16)]
+        public string longitude { get; set; }
+        [ProtoMember(17)]
+        public string[] tags { get; set; }
+        [ProtoMember(18)]
+        public XmlFriend[] friends { get; set; }
+        [ProtoMember(19)]
+        public string greeting { get; set; }
+        [ProtoMember(20)]
+        public string favoriteFruit { get; set; }
     }
 }
