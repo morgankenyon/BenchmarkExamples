@@ -1,26 +1,32 @@
 ﻿using BenchmarkDotNet.Running;
 using BenchmarkExamples.Serialization;
 using System;
+using System.Collections.Generic;
 
 namespace BenchmarkExamples
 {
-    class Program
+    public class Program
     {
+        private static readonly List<string> BenchmarkTypes = new List<string>()
+        {
+            "Serialization"
+        };
         static void Main(string[] args)
         {
-            var summary = BenchmarkRunner.Run<SerializationBenchmark>();
-            //var serializer = new SerializationBenchmark();
-            //try
-            //{
-            //    serializer.prepareDataFiles();
-            //    serializer.N = 2;
-            //    serializer.ProtoBufToObjectTest();
-            //}
-            //catch (Exception e)
-            //{
-            //    Console.WriteLine(e.Message);
-            //    Console.ReadLine();
-            //}
+            if (args == null || args.Length == 0)
+            {
+                Console.WriteLine("Please specify one of the following options to run the corresponding benchmark:");
+                Console.WriteLine(string.Join(",\n", BenchmarkTypes.ToArray()));
+                return;
+            }
+
+            var option = args[0];
+            switch(option)
+            {
+                case "Serialization":
+                    var summary = BenchmarkRunner.Run<SerializationBenchmark>();
+                    break;
+            }
         }
     }
 }

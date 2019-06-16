@@ -1,0 +1,50 @@
+// Validating benchmarks:
+// ***** BenchmarkRunner: Start   *****
+// ***** Found 6 benchmark(s) in total *****
+// ***** Building 1 exe(s) in Parallel: Start   *****
+// start dotnet restore  /p:UseSharedCompilation=false /p:BuildInParallel=false /m:1 in C:\dev\BenchmarkExamples\src\BenchmarkExamples\bin\Release\netcoreapp2.2\d13b8505-3982-4abe-bbee-7f8781e172f0
+// command took 1.57s and exited with 0
+// start dotnet build -c Release  --no-restore /p:UseSharedCompilation=false /p:BuildInParallel=false /m:1 in C:\dev\BenchmarkExamples\src\BenchmarkExamples\bin\Release\netcoreapp2.2\d13b8505-3982-4abe-bbee-7f8781e172f0
+// command took 2.99s and exited with 0
+// ***** Done, took 00:00:04 (4.72 sec)   *****
+// Found 6 benchmarks:
+//   SerializationBenchmark.JsonToJObjectTest: DefaultJob [N=100]
+//   SerializationBenchmark.JsonToObjectTest: DefaultJob [N=100]
+//   SerializationBenchmark.XmlToObjectTest: DefaultJob [N=100]
+//   SerializationBenchmark.XmlPrepTimeIncludedTest: DefaultJob [N=100]
+//   SerializationBenchmark.XmlPrepTimeExcludedTest: DefaultJob [N=100]
+//   SerializationBenchmark.ProtoBufToObjectTest: DefaultJob [N=100]
+
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)// **************************
+// Benchmark: SerializationBenchmark.JsonToJObjectTest: DefaultJob [N=100]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet "d13b8505-3982-4abe-bbee-7f8781e172f0.dll" --benchmarkName "BenchmarkExamples.Serialization.SerializationBenchmark.JsonToJObjectTest(N: 100)" --job "Default" --benchmarkId 0 in C:\dev\BenchmarkExamples\src\BenchmarkExamples\bin\Release\netcoreapp2.2\d13b8505-3982-4abe-bbee-7f8781e172f0\bin\Release\netcoreapp2.2
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// Runtime=.NET Core 2.2.5 (CoreCLR 4.6.27617.05, CoreFX 4.6.27618.01), 64bit RyuJIT
+// GC=Concurrent Workstation
+// Job: DefaultJob
+
+OverheadJitting  1: 1 op, 324200.00 ns, 324.2000 us/op
+WorkloadJitting  1: 1 op, 79766900.00 ns, 79.7669 ms/op
+
+WorkloadPilot    1: 2 op, 6722700.00 ns, 3.3614 ms/op
+WorkloadPilot    2: 3 op, 8613900.00 ns, 2.8713 ms/op
+WorkloadPilot    3: 4 op, 11716500.00 ns, 2.9291 ms/op
+WorkloadPilot    4: 5 op, 13742100.00 ns, 2.7484 ms/op
+WorkloadPilot    5: 6 op, 18431900.00 ns, 3.0720 ms/op
+WorkloadPilot    6: 7 op, 19100200.00 ns, 2.7286 ms/op
+WorkloadPilot    7: 8 op, 21316400.00 ns, 2.6646 ms/op
+WorkloadPilot    8: 9 op, 24663100.00 ns, 2.7403 ms/op
+WorkloadPilot    9: 10 op, 25962300.00 ns, 2.5962 ms/op
+WorkloadPilot   10: 11 op, 29010400.00 ns, 2.6373 ms/op
+WorkloadPilot   11: 12 op, 29889200.00 ns, 2.4908 ms/op
+WorkloadPilot   12: 13 op, 33790700.00 ns, 2.5993 ms/op
+WorkloadPilot   13: 14 op, 35747200.00 ns, 2.5534 ms/op
+WorkloadPilot   14: 15 op, 37240700.00 ns, 2.4827 ms/op
+WorkloadPilot   15: 16 op, 41327500.00 ns, 2.5830 ms/op
+WorkloadPilot   16: 32 op, 77502300.00 ns, 2.4219 ms/op
+WorkloadPilot   17: 64 op, 149378600.00 ns, 2.3340 ms/op
+WorkloadPilot   18: 128 op, 292587700.00 ns, 2.2858 ms/op
