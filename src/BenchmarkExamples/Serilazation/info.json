@@ -1,0 +1,37 @@
+{
+	        'id': '5cf72414b97023feed70111c',
+	        'index': 0,
+	        'guid': 'c57d7018-5f87-4f79-a8ac-9e29b6b8f2d2',
+	        'isActive': false,
+	        'balance': '$3,998.67',
+	        'picture': 'http://placehold.it/32x32',
+	        'age': 36,
+	        'eyeColor': 'green',
+	        'name': {
+		        'first': 'York',
+		        'last': 'Bonner'
+	        },
+	        'company': 'SAVVY',
+	        'email': 'york.bonner@savvy.biz',
+	        'phone': '+1 (833) 529-2011',
+	        'address': '693 Duffield Street, Moraida, Wisconsin, 1658',
+	        'about': 'Occaecat tempor id ad culpa anim. Eiusmod sit commodo exercitation occaecat dolor commodo ullamco velit. Fugiat mollit esse id proident.',
+	        'latitude': '-10.211243',
+	        'longitude': '-15.700221',
+	        'friends': [
+		        {
+			        'id': 0,
+			        'name': 'Dodson Knox'
+		        },
+		        {
+			        'id': 1,
+			        'name': 'Kendra Wilder'
+		        },
+		        {
+			        'id': 2,
+			        'name': 'Jocelyn Knowles'
+		        }
+	        ],
+	        'greeting': 'Hello, York! You have 10 unread messages.',
+	        'favoriteFruit': 'apple'
+        }

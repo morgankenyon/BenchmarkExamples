@@ -1,4 +1,5 @@
 ﻿using BenchmarkDotNet.Running;
+using BenchmarkExamples.Serialization;
 using System;
 
 namespace BenchmarkExamples
@@ -7,7 +8,7 @@ namespace BenchmarkExamples
     {
         static void Main(string[] args)
         {
-            var summary = BenchmarkRunner.Run<JsonSerializerBenchmark>();
+            var summary = BenchmarkRunner.Run<SerializationBenchmark>();
             //var json = new JsonSerializerBenchmark();
             //try
             //{

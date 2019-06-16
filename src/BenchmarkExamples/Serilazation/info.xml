@@ -1,0 +1,37 @@
+<xmlinfo>
+   <about>Occaecat tempor id ad culpa anim.Eiusmod sit commodo exercitation occaecat dolor commodo ullamco velit. Fugiat mollit esse id proident.</about>
+   <address>693 Duffield Street, Moraida, Wisconsin, 1658</address>
+   <age>36</age>
+   <balance>$3,998.67</balance>
+   <company>SAVVY</company>
+   <email>york.bonner @savvy.biz</email>
+   <eyeColor>green</eyeColor>
+   <favoriteFruit>apple</favoriteFruit>
+   <friends>
+      <XmlFriend>
+         <id>0</id>
+         <name>Dodson Knox</name>
+      </XmlFriend>
+     <XmlFriend>
+         <id>1</id>
+         <name>Kendra Wilder</name>
+      </XmlFriend>
+     <XmlFriend>
+         <id>2</id>
+         <name>Jocelyn Knowles</name>
+      </XmlFriend>
+   </friends>
+   <greeting>Hello, York! You have 10 unread messages.</greeting>
+   <guid>c57d7018-5f87-4f79-a8ac-9e29b6b8f2d2</guid>
+   <id>5cf72414b97023feed70111c</id>
+   <index>0</index>
+   <isActive>false</isActive>
+   <latitude>-10.211243</latitude>
+   <longitude>-15.700221</longitude>
+   <name>
+      <first>York</first>
+      <last>Bonner</last>
+   </name>
+   <phone>+1 (833) 529-2011</phone>
+   <picture>http://placehold.it/32x32</picture>
+</xmlinfo>

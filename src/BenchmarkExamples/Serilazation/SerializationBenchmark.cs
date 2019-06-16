@@ -8,11 +8,12 @@ using System.IO;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace BenchmarkExamples
+namespace BenchmarkExamples.Serialization
 {
     [MemoryDiagnoser]
-    public class JsonSerializerBenchmark
+    public class SerializationBenchmark
     {
+
         string xmlString = @"<xmlinfo>
    <about>Occaecat tempor id ad culpa anim.Eiusmod sit commodo exercitation occaecat dolor commodo ullamco velit. Fugiat mollit esse id proident.</about>
    <address>693 Duffield Street, Moraida, Wisconsin, 1658</address>
@@ -23,18 +24,18 @@ namespace BenchmarkExamples
    <eyeColor>green</eyeColor>
    <favoriteFruit>apple</favoriteFruit>
    <friends>
-      <Friend>
+      <XmlFriend>
          <id>0</id>
          <name>Dodson Knox</name>
-      </Friend>
-      <Friend>
+      </XmlFriend>
+      <XmlFriend>
          <id>1</id>
          <name>Kendra Wilder</name>
-      </Friend>
-      <Friend>
+      </XmlFriend>
+      <XmlFriend>
          <id>2</id>
          <name>Jocelyn Knowles</name>
-      </Friend>
+      </XmlFriend>
    </friends>
    <greeting>Hello, York! You have 10 unread messages.</greeting>
    <guid>c57d7018-5f87-4f79-a8ac-9e29b6b8f2d2</guid>
@@ -49,13 +50,6 @@ namespace BenchmarkExamples
    </name>
    <phone>+1 (833) 529-2011</phone>
    <picture>http://placehold.it/32x32</picture>
-   <tags>
-      <element>sint</element>
-      <element>deserunt</element>
-      <element>id</element>
-      <element>sint</element>
-      <element>consectetur</element>
-   </tags>
 </xmlinfo>";
         string jsonString = @"{
 	        'id': '5cf72414b97023feed70111c',
@@ -77,13 +71,6 @@ namespace BenchmarkExamples
 	        'about': 'Occaecat tempor id ad culpa anim. Eiusmod sit commodo exercitation occaecat dolor commodo ullamco velit. Fugiat mollit esse id proident.',
 	        'latitude': '-10.211243',
 	        'longitude': '-15.700221',
-	        'tags': [
-		        'sint',
-		        'deserunt',
-		        'id',
-		        'sint',
-		        'consectetur'
-	        ],
 	        'friends': [
 		        {
 			        'id': 0,
@@ -105,29 +92,35 @@ namespace BenchmarkExamples
         [Params(100)]
         public int N;
 
+        private XmlSerializer xmlSerializer;
         [GlobalSetup]
         public void prepareDataFiles()
         {
             //creating file for protobuf to read
             var parsedObject = JsonConvert.DeserializeObject<ProtoInfo>(jsonString);
-            using (var file = File.Create("info.bin"))
+            using (var file = File.Create("Serialization/info.bin"))
             {
                 Serializer.Serialize(file, parsedObject);
             }
 
             //creating file for json parser
-            File.WriteAllText("info.json", jsonString);
+            File.WriteAllText("Serialization/info.json", jsonString);
 
             //creating file for xml parser
-            File.WriteAllText("info.xml", xmlString);
+            File.WriteAllText("Serialization/info.xml", xmlString);
+
+            //prep xml serializer
+            var xRoot = new XmlRootAttribute();
+            xRoot.ElementName = "xmlinfo";
+            xmlSerializer = new XmlSerializer(typeof(Info), xRoot);
         }
 
         [Benchmark]
-        public void JsonTest()
+        public void JsonToJObjectTest()
         {
             for (int i = 0; i < N; i++)
             {
-                var jsonInfo = File.ReadAllText("info.json");
+                var jsonInfo = File.ReadAllText("Serialization/info.json");
                 var json = JObject.Parse(jsonInfo);
 
                 var id = json["id"];
@@ -148,22 +141,20 @@ namespace BenchmarkExamples
                 var about = json["about"];
                 var latitude = json["latitude"];
                 var longitude = json["longitude"];
-                var tags = json["tags"];
-                var friends = json["friends"];
-                var friendZero = friends[0];
-                var friendOne = friends[1];
-                var friendTwo = friends[2];
                 var greeting = json["greeting"];
                 var favoriteFruit = json["favoriteFruit"];
+
+                var infoString = json.ToString();
+                File.WriteAllText("Serialization/JsonTestInfo.json", infoString);
             }
         }
 
         [Benchmark(Baseline = true)]
-        public void ObjectTest()
+        public void JsonToObjectTest()
         {
             for (int i = 0; i < N; i++)
             {
-                var jsonInfo = File.ReadAllText("info.json");
+                var jsonInfo = File.ReadAllText("Serialization/info.json");
                 var parsedObject = JsonConvert.DeserializeObject<Info>(jsonInfo);
                 var id = parsedObject.id;
                 var index = parsedObject.index;
@@ -183,22 +174,20 @@ namespace BenchmarkExamples
                 var about = parsedObject.about;
                 var latitude = parsedObject.latitude;
                 var longitude = parsedObject.longitude;
-                var tags = parsedObject.tags;
-                var friends = parsedObject.friends;
-                var friendZero = friends[0];
-                var friendOne = friends[1];
-                var friendTwo = friends[2];
                 var greeting = parsedObject.greeting;
                 var favoriteFruit = parsedObject.favoriteFruit;
+
+                var infoString = JsonConvert.SerializeObject(parsedObject);
+                File.WriteAllText("Serialization/ObjectTestInfo.json", infoString);
             }
         }
 
         [Benchmark]
-        public void XmlTest()
+        public void XmlToObjectTest()
         {
             for (int i = 0; i < N; i++)
             {
-                var xmlInfo = File.ReadAllText("info.xml");
+                var xmlInfo = File.ReadAllText("Serialization/info.xml");
                 var xRoot = new XmlRootAttribute();
                 xRoot.ElementName = "xmlinfo";
                 var serializer = new XmlSerializer(typeof(Info), xRoot);
@@ -225,46 +214,110 @@ namespace BenchmarkExamples
                 var about = info.about;
                 var latitude = info.latitude;
                 var longitude = info.longitude;
-                var tags = info.tags;
-                var friends = info.friends;
-                var friendZero = friends[0];
-                var friendOne = friends[1];
-                var friendTwo = friends[2];
                 var greeting = info.greeting;
                 var favoriteFruit = info.favoriteFruit;
+
+                using (StringWriter textWriter = new StringWriter())
+                {
+                    serializer.Serialize(textWriter, info);
+                    var xmlString = textWriter.ToString();
+                    File.WriteAllText("Serialization/XmlTestInfo.json", xmlString);
+                }
             }
         }
 
         [Benchmark]
-        public void ProtoBufXmlTest()
+        public void XmlPrepTimeIncludedTest()
         {
+            var xRoot = new XmlRootAttribute();
+            xRoot.ElementName = "xmlinfo";
+            var serializer = new XmlSerializer(typeof(Info), xRoot);
+            for (int i = 0; i < N; i++)
+            {
+                var xmlInfo = File.ReadAllText("Serialization/info.xml");
+                Info info = null;
+                using (TextReader reader = new StringReader(xmlInfo))
+                {
+                    info = (Info)serializer.Deserialize(reader);
+                }
+                var id = info.id;
+                var index = info.index;
+                var guid = info.guid;
+                var isActive = info.isActive;
+                var balance = info.balance;
+                var picture = info.picture;
+                var age = info.age;
+                var eyeColor = info.eyeColor;
+                var name = info.name;
+                var firstName = name.first;
+                var lastName = name.last;
+                var company = info.company;
+                var email = info.email;
+                var phone = info.phone;
+                var address = info.address;
+                var about = info.about;
+                var latitude = info.latitude;
+                var longitude = info.longitude;
+                var greeting = info.greeting;
+                var favoriteFruit = info.favoriteFruit;
 
-            //    var parsedObject = JsonConvert.DeserializeObject<ProtoInfo>(jsonString);
+                using (StringWriter textWriter = new StringWriter())
+                {
+                    xmlSerializer.Serialize(textWriter, info);
+                    var xmlString = textWriter.ToString();
+                    File.WriteAllText("Serialization/XmlPrepTimeIncludeInfo.json", xmlString);
+                }
+            }
+        }
 
-            //    using (var file = File.Create("info.bin"))
-            //    {
-            //        Serializer.Serialize(file, parsedObject);
-            //    }
+        [Benchmark]
+        public void XmlPrepTimeExcludedTest()
+        {
+            for (int i = 0; i < N; i++)
+            {
+                var xmlInfo = File.ReadAllText("Serialization/info.xml");
+                Info info = null;
+                using (TextReader reader = new StringReader(xmlInfo))
+                {
+                    info = (Info)xmlSerializer.Deserialize(reader);
+                }
+                var id = info.id;
+                var index = info.index;
+                var guid = info.guid;
+                var isActive = info.isActive;
+                var balance = info.balance;
+                var picture = info.picture;
+                var age = info.age;
+                var eyeColor = info.eyeColor;
+                var name = info.name;
+                var firstName = name.first;
+                var lastName = name.last;
+                var company = info.company;
+                var email = info.email;
+                var phone = info.phone;
+                var address = info.address;
+                var about = info.about;
+                var latitude = info.latitude;
+                var longitude = info.longitude;
+                var greeting = info.greeting;
+                var favoriteFruit = info.favoriteFruit;
 
-            //ProtoInfo newInfo;
-            //using (var file = File.OpenRead("info.bin"))
-            //{
-            //    newInfo = Serializer.Deserialize<ProtoInfo>(file);
-            //}
-            //byte[] msgOut;
-            //using (var stream = new MemoryStream())
-            //{
-            //    Serializer.Serialize(stream, parsedObject);
-            //    msgOut = stream.GetBuffer();
-            //};
-            //string converted = Encoding.UTF8.GetString(msgOut, 0, msgOut.Length);
+                using (StringWriter textWriter = new StringWriter())
+                {
+                    xmlSerializer.Serialize(textWriter, info);
+                    var xmlString = textWriter.ToString();
+                    File.WriteAllText("Serialization/XmlPrepTimeExcludedInfo.json", xmlString);
+                }
+            }
+        }
 
-            //var memoryStream = new MemoryStream(msgOut);
-            //var infoObject = Serializer.Deserialize<ProtoInfo>(memoryStream);
+        [Benchmark]
+        public void ProtoBufToObjectTest()
+        {
             for (int i = 0; i < N; i++)
             {
                 ProtoInfo info;
-                using (var file = File.OpenRead("info.bin"))
+                using (var file = File.OpenRead("Serialization/info.bin"))
                 {
                     info = Serializer.Deserialize<ProtoInfo>(file);
                 }
@@ -286,13 +339,14 @@ namespace BenchmarkExamples
                 var about = info.about;
                 var latitude = info.latitude;
                 var longitude = info.longitude;
-                var tags = info.tags;
-                var friends = info.friends;
-                var friendZero = friends[0];
-                var friendOne = friends[1];
-                var friendTwo = friends[2];
                 var greeting = info.greeting;
                 var favoriteFruit = info.favoriteFruit;
+
+
+                using (var file = File.Create("Serialization/ProtoBufXmlTestInfo.bin"))
+                {
+                    Serializer.Serialize(file, info);
+                }
             }
         }
     }
@@ -302,11 +356,6 @@ namespace BenchmarkExamples
     {
         public string first { get; set; }
         public string last { get; set; }
-    }
-    public class Friend
-    {
-        public int id { get; set; }
-        public string name { get; set; }
     }
     public class Info
     {
@@ -326,9 +375,55 @@ namespace BenchmarkExamples
         public string about { get; set; }
         public string latitude { get; set; }
         public string longitude { get; set; }
-        public string[] tags { get; set; }
-        public Friend[] friends { get; set; }
         public string greeting { get; set; }
+        public string favoriteFruit { get; set; }
+    }
+
+    public class XmlName
+    {
+        [XmlElement("first")]
+        public string first { get; set; }
+        [XmlElement("last")]
+        public string last { get; set; }
+    }
+
+    public class XmlInfo
+    {
+        [XmlElement("id")]
+        public string id { get; set; }
+        [XmlElement("index")]
+        public int index { get; set; }
+        [XmlElement("guid")]
+        public Guid guid { get; set; }
+        [XmlElement("isActive")]
+        public bool isActive { get; set; }
+        [XmlElement("balance")]
+        public string balance { get; set; }
+        [XmlElement("picture")]
+        public string picture { get; set; }
+        [XmlElement("age")]
+        public int age { get; set; }
+        [XmlElement("eyeColor")]
+        public string eyeColor { get; set; }
+        [XmlElement("name")]
+        public Name name { get; set; }
+        [XmlElement("company")]
+        public string company { get; set; }
+        [XmlElement("email")]
+        public string email { get; set; }
+        [XmlElement("phone")]
+        public string phone { get; set; }
+        [XmlElement("address")]
+        public string address { get; set; }
+        [XmlElement("about")]
+        public string about { get; set; }
+        [XmlElement("latitude")]
+        public string latitude { get; set; }
+        [XmlElement("longitude")]
+        public string longitude { get; set; }
+        [XmlElement("greeting")]
+        public string greeting { get; set; }
+        [XmlElement("favoriteFruit")]
         public string favoriteFruit { get; set; }
     }
 
@@ -339,14 +434,6 @@ namespace BenchmarkExamples
         public string first { get; set; }
         [ProtoMember(2)]
         public string last { get; set; }
-    }
-    [ProtoContract]
-    public class ProtoFriend
-    {
-        [ProtoMember(1)]
-        public int id { get; set; }
-        [ProtoMember(2)]
-        public string name { get; set; }
     }
     [ProtoContract]
     public class ProtoInfo
@@ -384,12 +471,8 @@ namespace BenchmarkExamples
         [ProtoMember(16)]
         public string longitude { get; set; }
         [ProtoMember(17)]
-        public string[] tags { get; set; }
-        [ProtoMember(18)]
-        public ProtoFriend[] friends { get; set; }
-        [ProtoMember(19)]
         public string greeting { get; set; }
-        [ProtoMember(20)]
+        [ProtoMember(18)]
         public string favoriteFruit { get; set; }
     }
 }
