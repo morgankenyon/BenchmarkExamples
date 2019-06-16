@@ -2,7 +2,7 @@
 <html lang='en'>
 <head>
 <meta charset='utf-8' />
-<title>BenchmarkExamples.Serialization.SerializationBenchmark-20190615-114731</title>
+<title>BenchmarkExamples.Serialization.SerializationBenchmark-20190616-015735</title>
 
 <style type="text/css">
 	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
@@ -16,19 +16,20 @@
 BenchmarkDotNet=v0.11.5, OS=Windows 10.0.17763.557 (1809/October2018Update/Redstone5)
 Intel Core i7-7700HQ CPU 2.80GHz (Kaby Lake), 1 CPU, 8 logical and 4 physical cores
 .NET Core SDK=2.2.300
-  [Host] : .NET Core 2.2.5 (CoreCLR 4.6.27617.05, CoreFX 4.6.27618.01), 64bit RyuJIT
+  [Host]     : .NET Core 2.2.5 (CoreCLR 4.6.27617.05, CoreFX 4.6.27618.01), 64bit RyuJIT
+  DefaultJob : .NET Core 2.2.5 (CoreCLR 4.6.27617.05, CoreFX 4.6.27618.01), 64bit RyuJIT
 </code></pre>
 <pre><code></code></pre>
 
 <table>
-<thead><tr><th>           Method</th><th>N</th><th>Mean</th><th>Error</th><th>Ratio</th><th>RatioSD</th>
+<thead><tr><th>           Method</th><th>N</th><th>  Mean</th><th>Error</th><th>StdDev</th><th>Median</th><th>Ratio</th><th>RatioSD</th><th>Gen 0</th><th>Gen 1</th><th>Gen 2</th><th>Allocated</th>
 </tr>
-</thead><tbody><tr><td>JsonToJObjectTest</td><td>100</td><td>NA</td><td>NA</td><td>?</td><td>?</td>
-</tr><tr><td>JsonToObjectTest</td><td>100</td><td>NA</td><td>NA</td><td>?</td><td>?</td>
-</tr><tr><td>XmlToObjectTest</td><td>100</td><td>NA</td><td>NA</td><td>?</td><td>?</td>
-</tr><tr><td>XmlPrepTimeIncludedTest</td><td>100</td><td>NA</td><td>NA</td><td>?</td><td>?</td>
-</tr><tr><td>XmlPrepTimeExcludedTest</td><td>100</td><td>NA</td><td>NA</td><td>?</td><td>?</td>
-</tr><tr><td>ProtoBufToObjectTest</td><td>100</td><td>NA</td><td>NA</td><td>?</td><td>?</td>
+</thead><tbody><tr><td>JsonToJObjectTest</td><td>100</td><td>2.572 ms</td><td>0.0814 ms</td><td>0.2363 ms</td><td>2.486 ms</td><td>1.58</td><td>0.19</td><td>695.3125</td><td>-</td><td>-</td><td>2137.5 KB</td>
+</tr><tr><td>JsonToObjectTest</td><td>100</td><td>1.669 ms</td><td>0.0317 ms</td><td>0.0618 ms</td><td>1.656 ms</td><td>1.00</td><td>0.00</td><td>292.9688</td><td>-</td><td>-</td><td>903.91 KB</td>
+</tr><tr><td>XmlToObjectTest</td><td>100</td><td>1,275.455 ms</td><td>33.8151 ms</td><td>93.7014 ms</td><td>1,257.803 ms</td><td>767.88</td><td>51.52</td><td>10000.0000</td><td>-</td><td>-</td><td>32596.84 KB</td>
+</tr><tr><td>XmlPrepTimeIncludedTest</td><td>100</td><td>15.033 ms</td><td>0.8596 ms</td><td>2.4526 ms</td><td>14.248 ms</td><td>9.38</td><td>1.47</td><td>843.7500</td><td>-</td><td>-</td><td>2604.43 KB</td>
+</tr><tr><td>XmlPrepTimeExcludedTest</td><td>100</td><td>2.878 ms</td><td>0.0175 ms</td><td>0.0155 ms</td><td>2.878 ms</td><td>1.75</td><td>0.07</td><td>734.3750</td><td>-</td><td>-</td><td>2260.16 KB</td>
+</tr><tr><td>ProtoBufToObjectTest</td><td>100</td><td>1.254 ms</td><td>0.0315 ms</td><td>0.0615 ms</td><td>1.234 ms</td><td>0.75</td><td>0.05</td><td>105.4688</td><td>-</td><td>-</td><td>326.56 KB</td>
 </tr></tbody></table>
 </body>
 </html>

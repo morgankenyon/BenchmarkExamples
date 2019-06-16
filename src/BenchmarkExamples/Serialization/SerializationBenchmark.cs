@@ -93,21 +93,22 @@ namespace BenchmarkExamples.Serialization
         public int N;
 
         private XmlSerializer xmlSerializer;
+        private string jsonInfo;
+        private string xmlInfo;
+        private FileStream protobufInputStream;
+        private FileStream protobufOutputStream;
+        private string infoFolder = "Serialization";
         [GlobalSetup]
         public void prepareDataFiles()
         {
-            //creating file for protobuf to read
-            var parsedObject = JsonConvert.DeserializeObject<ProtoInfo>(jsonString);
-            using (var file = File.Create("Serialization/info.bin"))
-            {
-                Serializer.Serialize(file, parsedObject);
-            }
+            //read in json string
+            jsonInfo = File.ReadAllText($"{infoFolder}/info.json");
 
-            //creating file for json parser
-            File.WriteAllText("Serialization/info.json", jsonString);
+            //read in xml string
+            xmlInfo = File.ReadAllText($"{infoFolder}/info.xml");
 
-            //creating file for xml parser
-            File.WriteAllText("Serialization/info.xml", xmlString);
+            //read in protobuf-net file
+            protobufInputStream = File.OpenRead($"{infoFolder}/info.bin");
 
             //prep xml serializer
             var xRoot = new XmlRootAttribute();
@@ -120,7 +121,7 @@ namespace BenchmarkExamples.Serialization
         {
             for (int i = 0; i < N; i++)
             {
-                var jsonInfo = File.ReadAllText("Serialization/info.json");
+                //var jsonInfo = File.ReadAllText("Serialization/info.json");
                 var json = JObject.Parse(jsonInfo);
 
                 var id = json["id"];
@@ -145,7 +146,6 @@ namespace BenchmarkExamples.Serialization
                 var favoriteFruit = json["favoriteFruit"];
 
                 var infoString = json.ToString();
-                File.WriteAllText("Serialization/JsonTestInfo.json", infoString);
             }
         }
 
@@ -154,7 +154,6 @@ namespace BenchmarkExamples.Serialization
         {
             for (int i = 0; i < N; i++)
             {
-                var jsonInfo = File.ReadAllText("Serialization/info.json");
                 var parsedObject = JsonConvert.DeserializeObject<Info>(jsonInfo);
                 var id = parsedObject.id;
                 var index = parsedObject.index;
@@ -178,7 +177,6 @@ namespace BenchmarkExamples.Serialization
                 var favoriteFruit = parsedObject.favoriteFruit;
 
                 var infoString = JsonConvert.SerializeObject(parsedObject);
-                File.WriteAllText("Serialization/ObjectTestInfo.json", infoString);
             }
         }
 
@@ -187,7 +185,7 @@ namespace BenchmarkExamples.Serialization
         {
             for (int i = 0; i < N; i++)
             {
-                var xmlInfo = File.ReadAllText("Serialization/info.xml");
+               // var xmlInfo = File.ReadAllText("Serialization/info.xml");
                 var xRoot = new XmlRootAttribute();
                 xRoot.ElementName = "xmlinfo";
                 var serializer = new XmlSerializer(typeof(Info), xRoot);
@@ -221,7 +219,6 @@ namespace BenchmarkExamples.Serialization
                 {
                     serializer.Serialize(textWriter, info);
                     var xmlString = textWriter.ToString();
-                    File.WriteAllText("Serialization/XmlTestInfo.json", xmlString);
                 }
             }
         }
@@ -234,7 +231,6 @@ namespace BenchmarkExamples.Serialization
             var serializer = new XmlSerializer(typeof(Info), xRoot);
             for (int i = 0; i < N; i++)
             {
-                var xmlInfo = File.ReadAllText("Serialization/info.xml");
                 Info info = null;
                 using (TextReader reader = new StringReader(xmlInfo))
                 {
@@ -265,7 +261,6 @@ namespace BenchmarkExamples.Serialization
                 {
                     xmlSerializer.Serialize(textWriter, info);
                     var xmlString = textWriter.ToString();
-                    File.WriteAllText("Serialization/XmlPrepTimeIncludeInfo.json", xmlString);
                 }
             }
         }
@@ -275,7 +270,6 @@ namespace BenchmarkExamples.Serialization
         {
             for (int i = 0; i < N; i++)
             {
-                var xmlInfo = File.ReadAllText("Serialization/info.xml");
                 Info info = null;
                 using (TextReader reader = new StringReader(xmlInfo))
                 {
@@ -306,7 +300,6 @@ namespace BenchmarkExamples.Serialization
                 {
                     xmlSerializer.Serialize(textWriter, info);
                     var xmlString = textWriter.ToString();
-                    File.WriteAllText("Serialization/XmlPrepTimeExcludedInfo.json", xmlString);
                 }
             }
         }
@@ -317,10 +310,8 @@ namespace BenchmarkExamples.Serialization
             for (int i = 0; i < N; i++)
             {
                 ProtoInfo info;
-                using (var file = File.OpenRead("Serialization/info.bin"))
-                {
-                    info = Serializer.Deserialize<ProtoInfo>(file);
-                }
+                protobufInputStream.Position = 0;
+                info = Serializer.Deserialize<ProtoInfo>(protobufInputStream);
                 var id = info.id;
                 var index = info.index;
                 var guid = info.guid;
@@ -343,10 +334,8 @@ namespace BenchmarkExamples.Serialization
                 var favoriteFruit = info.favoriteFruit;
 
 
-                using (var file = File.Create("Serialization/ProtoBufXmlTestInfo.bin"))
-                {
-                    Serializer.Serialize(file, info);
-                }
+                var outputStream = new MemoryStream();
+                Serializer.Serialize(outputStream, info);
             }
         }
     }

@@ -1,0 +1,158 @@
+// Validating benchmarks:
+// ***** BenchmarkRunner: Start   *****
+// ***** Found 1 benchmark(s) in total *****
+// ***** Building 1 exe(s) in Parallel: Start   *****
+// start dotnet restore  /p:UseSharedCompilation=false /p:BuildInParallel=false /m:1 in C:\dev\BenchmarkExamples\src\BenchmarkExamples\bin\Release\netcoreapp2.2\ffc4cbed-014e-4bf7-b580-94b425c73279
+// command took 1.69s and exited with 0
+// start dotnet build -c Release  --no-restore /p:UseSharedCompilation=false /p:BuildInParallel=false /m:1 in C:\dev\BenchmarkExamples\src\BenchmarkExamples\bin\Release\netcoreapp2.2\ffc4cbed-014e-4bf7-b580-94b425c73279
+// command took 3.34s and exited with 0
+// ***** Done, took 00:00:05 (5.2 sec)   *****
+// Found 1 benchmarks:
+//   SerializationBenchmark.ProtoBufToObjectTest: DefaultJob [N=100]
+
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)// **************************
+// Benchmark: SerializationBenchmark.ProtoBufToObjectTest: DefaultJob [N=100]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet "ffc4cbed-014e-4bf7-b580-94b425c73279.dll" --benchmarkName "BenchmarkExamples.Serialization.SerializationBenchmark.ProtoBufToObjectTest(N: 100)" --job "Default" --benchmarkId 0 in C:\dev\BenchmarkExamples\src\BenchmarkExamples\bin\Release\netcoreapp2.2\ffc4cbed-014e-4bf7-b580-94b425c73279\bin\Release\netcoreapp2.2
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// Runtime=.NET Core 2.2.5 (CoreCLR 4.6.27617.05, CoreFX 4.6.27618.01), 64bit RyuJIT
+// GC=Concurrent Workstation
+// Job: DefaultJob
+
+OverheadJitting  1: 1 op, 300200.00 ns, 300.2000 us/op
+WorkloadJitting  1: 1 op, 117373500.00 ns, 117.3735 ms/op
+
+WorkloadPilot    1: 2 op, 2887700.00 ns, 1.4439 ms/op
+WorkloadPilot    2: 3 op, 4318600.00 ns, 1.4395 ms/op
+WorkloadPilot    3: 4 op, 5519100.00 ns, 1.3798 ms/op
+WorkloadPilot    4: 5 op, 6987600.00 ns, 1.3975 ms/op
+WorkloadPilot    5: 6 op, 10104700.00 ns, 1.6841 ms/op
+WorkloadPilot    6: 7 op, 11468700.00 ns, 1.6384 ms/op
+WorkloadPilot    7: 8 op, 12163500.00 ns, 1.5204 ms/op
+WorkloadPilot    8: 9 op, 12673900.00 ns, 1.4082 ms/op
+WorkloadPilot    9: 10 op, 15504800.00 ns, 1.5505 ms/op
+WorkloadPilot   10: 11 op, 16297000.00 ns, 1.4815 ms/op
+WorkloadPilot   11: 12 op, 17936400.00 ns, 1.4947 ms/op
+WorkloadPilot   12: 13 op, 19175500.00 ns, 1.4750 ms/op
+WorkloadPilot   13: 14 op, 19184100.00 ns, 1.3703 ms/op
+WorkloadPilot   14: 15 op, 25824700.00 ns, 1.7216 ms/op
+WorkloadPilot   15: 16 op, 32606400.00 ns, 2.0379 ms/op
+WorkloadPilot   16: 32 op, 68774900.00 ns, 2.1492 ms/op
+WorkloadPilot   17: 64 op, 115496100.00 ns, 1.8046 ms/op
+WorkloadPilot   18: 128 op, 163694700.00 ns, 1.2789 ms/op
+WorkloadPilot   19: 256 op, 314182700.00 ns, 1.2273 ms/op
+WorkloadPilot   20: 512 op, 754952000.00 ns, 1.4745 ms/op
+
+WorkloadWarmup   1: 512 op, 724821900.00 ns, 1.4157 ms/op
+WorkloadWarmup   2: 512 op, 781391000.00 ns, 1.5262 ms/op
+WorkloadWarmup   3: 512 op, 652353100.00 ns, 1.2741 ms/op
+WorkloadWarmup   4: 512 op, 648891500.00 ns, 1.2674 ms/op
+WorkloadWarmup   5: 512 op, 657855300.00 ns, 1.2849 ms/op
+WorkloadWarmup   6: 512 op, 682994800.00 ns, 1.3340 ms/op
+WorkloadWarmup   7: 512 op, 682579900.00 ns, 1.3332 ms/op
+
+// BeforeActualRun
+WorkloadActual   1: 512 op, 660909400.00 ns, 1.2908 ms/op
+WorkloadActual   2: 512 op, 664956400.00 ns, 1.2987 ms/op
+WorkloadActual   3: 512 op, 661575600.00 ns, 1.2921 ms/op
+WorkloadActual   4: 512 op, 672439800.00 ns, 1.3134 ms/op
+WorkloadActual   5: 512 op, 655786500.00 ns, 1.2808 ms/op
+WorkloadActual   6: 512 op, 683039700.00 ns, 1.3341 ms/op
+WorkloadActual   7: 512 op, 650382200.00 ns, 1.2703 ms/op
+WorkloadActual   8: 512 op, 663286200.00 ns, 1.2955 ms/op
+WorkloadActual   9: 512 op, 671429000.00 ns, 1.3114 ms/op
+WorkloadActual  10: 512 op, 673776500.00 ns, 1.3160 ms/op
+WorkloadActual  11: 512 op, 657631000.00 ns, 1.2844 ms/op
+WorkloadActual  12: 512 op, 662788100.00 ns, 1.2945 ms/op
+WorkloadActual  13: 512 op, 708754800.00 ns, 1.3843 ms/op
+WorkloadActual  14: 512 op, 714239600.00 ns, 1.3950 ms/op
+WorkloadActual  15: 512 op, 869881200.00 ns, 1.6990 ms/op
+
+// AfterActualRun
+WorkloadResult   1: 512 op, 660909400.00 ns, 1.2908 ms/op
+WorkloadResult   2: 512 op, 664956400.00 ns, 1.2987 ms/op
+WorkloadResult   3: 512 op, 661575600.00 ns, 1.2921 ms/op
+WorkloadResult   4: 512 op, 672439800.00 ns, 1.3134 ms/op
+WorkloadResult   5: 512 op, 655786500.00 ns, 1.2808 ms/op
+WorkloadResult   6: 512 op, 683039700.00 ns, 1.3341 ms/op
+WorkloadResult   7: 512 op, 650382200.00 ns, 1.2703 ms/op
+WorkloadResult   8: 512 op, 663286200.00 ns, 1.2955 ms/op
+WorkloadResult   9: 512 op, 671429000.00 ns, 1.3114 ms/op
+WorkloadResult  10: 512 op, 673776500.00 ns, 1.3160 ms/op
+WorkloadResult  11: 512 op, 657631000.00 ns, 1.2844 ms/op
+WorkloadResult  12: 512 op, 662788100.00 ns, 1.2945 ms/op
+WorkloadResult  13: 512 op, 708754800.00 ns, 1.3843 ms/op
+WorkloadResult  14: 512 op, 714239600.00 ns, 1.3950 ms/op
+GC:  54 0 0 171213848 512
+
+// AfterAll
+
+Mean = 1.3115 ms, StdErr = 0.0099 ms (0.75%); N = 14, StdDev = 0.0369 ms
+Min = 1.2703 ms, Q1 = 1.2908 ms, Median = 1.2971 ms, Q3 = 1.3160 ms, Max = 1.3950 ms
+IQR = 0.0251 ms, LowerFence = 1.2531 ms, UpperFence = 1.3537 ms
+ConfidenceInterval = [1.2699 ms; 1.3531 ms] (CI 99.9%), Margin = 0.0416 ms (3.17% of Mean)
+Skewness = 1.18, Kurtosis = 3.15, MValue = 2
+
+Successfully reverted power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)
+// ***** BenchmarkRunner: Finish  *****
+
+// * Export *
+  BenchmarkDotNet.Artifacts\results\BenchmarkExamples.Serialization.SerializationBenchmark-report.csv
+  BenchmarkDotNet.Artifacts\results\BenchmarkExamples.Serialization.SerializationBenchmark-report-github.md
+  BenchmarkDotNet.Artifacts\results\BenchmarkExamples.Serialization.SerializationBenchmark-report.html
+
+// * Detailed results *
+SerializationBenchmark.ProtoBufToObjectTest: DefaultJob [N=100]
+Runtime = .NET Core 2.2.5 (CoreCLR 4.6.27617.05, CoreFX 4.6.27618.01), 64bit RyuJIT; GC = Concurrent Workstation
+Mean = 1.3115 ms, StdErr = 0.0099 ms (0.75%); N = 14, StdDev = 0.0369 ms
+Min = 1.2703 ms, Q1 = 1.2908 ms, Median = 1.2971 ms, Q3 = 1.3160 ms, Max = 1.3950 ms
+IQR = 0.0251 ms, LowerFence = 1.2531 ms, UpperFence = 1.3537 ms
+ConfidenceInterval = [1.2699 ms; 1.3531 ms] (CI 99.9%), Margin = 0.0416 ms (3.17% of Mean)
+Skewness = 1.18, Kurtosis = 3.15, MValue = 2
+-------------------- Histogram --------------------
+[1.264 ms ; 1.290 ms) | @@@
+[1.290 ms ; 1.317 ms) | @@@@@@@@
+[1.317 ms ; 1.347 ms) | @
+[1.347 ms ; 1.404 ms) | @@
+---------------------------------------------------
+
+// * Summary *
+
+BenchmarkDotNet=v0.11.5, OS=Windows 10.0.17763.557 (1809/October2018Update/Redstone5)
+Intel Core i7-7700HQ CPU 2.80GHz (Kaby Lake), 1 CPU, 8 logical and 4 physical cores
+.NET Core SDK=2.2.300
+  [Host]     : .NET Core 2.2.5 (CoreCLR 4.6.27617.05, CoreFX 4.6.27618.01), 64bit RyuJIT
+  DefaultJob : .NET Core 2.2.5 (CoreCLR 4.6.27617.05, CoreFX 4.6.27618.01), 64bit RyuJIT
+
+
+|               Method |   N |     Mean |     Error |    StdDev |    Gen 0 | Gen 1 | Gen 2 | Allocated |
+|--------------------- |---- |---------:|----------:|----------:|---------:|------:|------:|----------:|
+| ProtoBufToObjectTest | 100 | 1.312 ms | 0.0416 ms | 0.0369 ms | 105.4688 |     - |     - | 326.56 KB |
+
+// * Hints *
+Outliers
+  SerializationBenchmark.ProtoBufToObjectTest: Default -> 1 outlier  was  removed (1.70 ms)
+
+// * Legends *
+  N         : Value of the 'N' parameter
+  Mean      : Arithmetic mean of all measurements
+  Error     : Half of 99.9% confidence interval
+  StdDev    : Standard deviation of all measurements
+  Gen 0     : GC Generation 0 collects per 1000 operations
+  Gen 1     : GC Generation 1 collects per 1000 operations
+  Gen 2     : GC Generation 2 collects per 1000 operations
+  Allocated : Allocated memory per single operation (managed only, inclusive, 1KB = 1024B)
+  1 ms      : 1 Millisecond (0.001 sec)
+
+// * Diagnostic Output - MemoryDiagnoser *
+
+
+// ***** BenchmarkRunner: End *****
+// ** Remained 0 benchmark(s) to run **
+Run time: 00:00:18 (18.92 sec), executed benchmarks: 1
+
+Global total time: 00:00:24 (24.14 sec), executed benchmarks: 1
+// * Artifacts cleanup *

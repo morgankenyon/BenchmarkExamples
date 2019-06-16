@@ -9,11 +9,12 @@ namespace BenchmarkExamples
         static void Main(string[] args)
         {
             var summary = BenchmarkRunner.Run<SerializationBenchmark>();
-            //var json = new JsonSerializerBenchmark();
+            //var serializer = new SerializationBenchmark();
             //try
             //{
-            //    json.N = 1;
-            //    json.XmlTest();
+            //    serializer.prepareDataFiles();
+            //    serializer.N = 2;
+            //    serializer.ProtoBufToObjectTest();
             //}
             //catch (Exception e)
             //{

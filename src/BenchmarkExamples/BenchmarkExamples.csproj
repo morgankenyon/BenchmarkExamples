@@ -6,13 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Serilazation\info.bin">
+    <EmbeddedResource Include="Serialization\info.bin">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Serilazation\info.json">
+    <EmbeddedResource Include="Serialization\info.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Serilazation\info.xml">
+    <EmbeddedResource Include="Serialization\info.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
