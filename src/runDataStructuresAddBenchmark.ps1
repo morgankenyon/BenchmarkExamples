@@ -1,0 +1,1 @@
+dotnet run --project .\BenchmarkExamples\BenchmarkExamples.csproj -c Release DataStructuresAdd

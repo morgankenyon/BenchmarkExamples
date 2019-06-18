@@ -11,7 +11,9 @@ namespace BenchmarkExamples
         private static readonly List<string> BenchmarkTypes = new List<string>()
         {
             "Serialization",
-            "DataStructures"
+            "DataStructuresAdd",
+            "DataStructuresAddUnique",
+            "DataStructuresAddRemove"
         };
         static void Main(string[] args)
         {
@@ -28,8 +30,14 @@ namespace BenchmarkExamples
                 case "Serialization":
                     var serializationSummary = BenchmarkRunner.Run<SerializationBenchmark>();
                     break;
-                case "DataStructures":
-                    var dataStructuresSummary = BenchmarkRunner.Run<DataStructuresBenchmark>();
+                case "DataStructuresAdd":
+                    var dataStructuresAddSummary = BenchmarkRunner.Run<DataStructuresAddBenchmark>();
+                    break;
+                case "DataStructuresAddUnique":
+                    var dataStructuresAddUniqueSummary = BenchmarkRunner.Run<DataStructuresAddUniqueBenchmark>();
+                    break;
+                case "DataStructuresAddRemove":
+                    var dataStructuresAddRemoveSummary = BenchmarkRunner.Run<DataStructuresAddRemoveBenchmark>();
                     break;
             }
         }
