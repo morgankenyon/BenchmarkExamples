@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>BenchmarkExamples.DataStructures.DataStructuresBenchmark-20190617-075043</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet=v0.11.5, OS=Windows 10.0.17763.557 (1809/October2018Update/Redstone5)
+Intel Core i7-7700HQ CPU 2.80GHz (Kaby Lake), 1 CPU, 8 logical and 4 physical cores
+.NET Core SDK=2.2.300
+  [Host]     : .NET Core 2.2.5 (CoreCLR 4.6.27617.05, CoreFX 4.6.27618.01), 64bit RyuJIT
+  DefaultJob : .NET Core 2.2.5 (CoreCLR 4.6.27617.05, CoreFX 4.6.27618.01), 64bit RyuJIT
+</code></pre>
+<pre><code></code></pre>
+
+<table>
+<thead><tr><th>                Method</th><th>N</th><th>  Mean</th><th>Error</th><th>StdDev</th><th>Median</th><th>Gen 0</th><th>Gen 1</th><th>Gen 2</th><th>Allocated</th>
+</tr>
+</thead><tbody><tr><td>ArrayAdd</td><td>100</td><td>85.08 ns</td><td>2.003 ns</td><td>5.713 ns</td><td>82.32 ns</td><td>0.1347</td><td>-</td><td>-</td><td>424 B</td>
+</tr><tr><td>ListAdd</td><td>100</td><td>357.73 ns</td><td>9.272 ns</td><td>18.517 ns</td><td>350.57 ns</td><td>0.3786</td><td>-</td><td>-</td><td>1192 B</td>
+</tr><tr><td>SizedListAdd</td><td>100</td><td>185.68 ns</td><td>3.513 ns</td><td>2.933 ns</td><td>186.93 ns</td><td>0.1473</td><td>-</td><td>-</td><td>464 B</td>
+</tr><tr><td>HashSetAdd</td><td>100</td><td>2,152.94 ns</td><td>47.110 ns</td><td>62.891 ns</td><td>2,128.06 ns</td><td>1.9035</td><td>-</td><td>-</td><td>6000 B</td>
+</tr><tr><td>LinkedListAdd</td><td>100</td><td>1,529.46 ns</td><td>28.701 ns</td><td>26.847 ns</td><td>1,534.72 ns</td><td>1.5392</td><td>-</td><td>-</td><td>4848 B</td>
+</tr><tr><td>ArrayListAdd</td><td>100</td><td>1,365.87 ns</td><td>66.714 ns</td><td>196.708 ns</td><td>1,305.91 ns</td><td>1.4610</td><td>-</td><td>-</td><td>4600 B</td>
+</tr><tr><td>DictionaryAdd</td><td>100</td><td>2,244.36 ns</td><td>49.513 ns</td><td>102.253 ns</td><td>2,206.77 ns</td><td>2.3460</td><td>-</td><td>-</td><td>7392 B</td>
+</tr><tr><td>ArrayAddIfUniqueUnknownIndex</td><td>100</td><td>7,220.36 ns</td><td>89.312 ns</td><td>79.172 ns</td><td>7,251.59 ns</td><td>0.1297</td><td>-</td><td>-</td><td>424 B</td>
+</tr><tr><td>ArrayAddIfUniqueKnownIndex</td><td>100</td><td>98.17 ns</td><td>3.693 ns</td><td>10.536 ns</td><td>92.58 ns</td><td>0.1347</td><td>-</td><td>-</td><td>424 B</td>
+</tr><tr><td>ListAddIfUnique</td><td>100</td><td>5,016.25 ns</td><td>100.014 ns</td><td>283.723 ns</td><td>5,010.16 ns</td><td>0.3738</td><td>-</td><td>-</td><td>1192 B</td>
+</tr><tr><td>SizedListAddIfUnique</td><td>100</td><td>4,682.19 ns</td><td>92.637 ns</td><td>203.340 ns</td><td>4,588.05 ns</td><td>0.1450</td><td>-</td><td>-</td><td>464 B</td>
+</tr><tr><td>HashSetAddIfUnique</td><td>100</td><td>3,408.85 ns</td><td>34.343 ns</td><td>28.678 ns</td><td>3,415.20 ns</td><td>1.9035</td><td>-</td><td>-</td><td>6000 B</td>
+</tr><tr><td>LinkedListAddIfUnique</td><td>100</td><td>12,306.68 ns</td><td>244.921 ns</td><td>521.946 ns</td><td>12,053.42 ns</td><td>1.5259</td><td>-</td><td>-</td><td>4848 B</td>
+</tr><tr><td>ArrayListAddIfUnique</td><td>100</td><td>29,287.56 ns</td><td>550.869 ns</td><td>889.550 ns</td><td>28,905.20 ns</td><td>2.1973</td><td>-</td><td>-</td><td>7000 B</td>
+</tr><tr><td>DictionaryAddIfUnique</td><td>100</td><td>3,197.07 ns</td><td>19.445 ns</td><td>16.237 ns</td><td>3,197.25 ns</td><td>2.3460</td><td>-</td><td>-</td><td>7392 B</td>
+</tr><tr><td>ArrayAddAndRemove</td><td>100</td><td>11,618.57 ns</td><td>242.869 ns</td><td>501.566 ns</td><td>11,360.12 ns</td><td>0.1221</td><td>-</td><td>-</td><td>424 B</td>
+</tr><tr><td>ListAddAndRemove</td><td>100</td><td>2,376.22 ns</td><td>49.551 ns</td><td>64.430 ns</td><td>2,361.51 ns</td><td>0.3777</td><td>-</td><td>-</td><td>1192 B</td>
+</tr><tr><td>SizedListAddAndRemove</td><td>100</td><td>2,155.64 ns</td><td>42.750 ns</td><td>94.731 ns</td><td>2,106.61 ns</td><td>0.1450</td><td>-</td><td>-</td><td>464 B</td>
+</tr><tr><td>HashSetAddAndRemove</td><td>100</td><td>4,141.28 ns</td><td>59.954 ns</td><td>53.148 ns</td><td>4,123.29 ns</td><td>1.8997</td><td>-</td><td>-</td><td>6000 B</td>
+</tr><tr><td>LinkedListAddRemove</td><td>100</td><td>3,021.27 ns</td><td>83.048 ns</td><td>158.008 ns</td><td>2,950.35 ns</td><td>1.5373</td><td>-</td><td>-</td><td>4848 B</td>
+</tr><tr><td>ArrayListAddRemove</td><td>100</td><td>9,156.60 ns</td><td>40.862 ns</td><td>36.223 ns</td><td>9,155.12 ns</td><td>2.2125</td><td>-</td><td>-</td><td>7000 B</td>
+</tr><tr><td>DictionaryAddRemove</td><td>100</td><td>3,724.62 ns</td><td>140.497 ns</td><td>412.052 ns</td><td>3,577.86 ns</td><td>2.3460</td><td>-</td><td>-</td><td>7392 B</td>
+</tr></tbody></table>
+</body>
+</html>

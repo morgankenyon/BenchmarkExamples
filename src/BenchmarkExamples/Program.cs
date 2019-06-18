@@ -1,4 +1,5 @@
 ﻿using BenchmarkDotNet.Running;
+using BenchmarkExamples.DataStructures;
 using BenchmarkExamples.Serialization;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,8 @@ namespace BenchmarkExamples
     {
         private static readonly List<string> BenchmarkTypes = new List<string>()
         {
-            "Serialization"
+            "Serialization",
+            "DataStructures"
         };
         static void Main(string[] args)
         {
@@ -24,7 +26,10 @@ namespace BenchmarkExamples
             switch(option)
             {
                 case "Serialization":
-                    var summary = BenchmarkRunner.Run<SerializationBenchmark>();
+                    var serializationSummary = BenchmarkRunner.Run<SerializationBenchmark>();
+                    break;
+                case "DataStructures":
+                    var dataStructuresSummary = BenchmarkRunner.Run<DataStructuresBenchmark>();
                     break;
             }
         }

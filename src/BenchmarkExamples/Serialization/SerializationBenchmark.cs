@@ -117,191 +117,191 @@ namespace BenchmarkExamples.Serialization
             xmlSerializer = new XmlSerializer(typeof(Info), xRoot);
         }
 
-            [Benchmark]
-            public void JsonToJObjectTest()
+        [Benchmark]
+        public void JsonToJObjectTest()
+        {
+            for (int i = 0; i < N; i++)
             {
-                for (int i = 0; i < N; i++)
-                {
-                    var json = JObject.Parse(jsonInfo);
+                var json = JObject.Parse(jsonInfo);
 
-                    var id = json["id"];
-                    var index = json["index"];
-                    var guid = json["guid"];
-                    var isActive = json["isActive"];
-                    var balance = json["balance"];
-                    var picture = json["picture"];
-                    var age = json["age"];
-                    var eyeColor = json["eyeColor"];
-                    var name = json["name"];
-                    var firstName = name["first"];
-                    var lastName = name["last"];
-                    var company = json["company"];
-                    var email = json["email"];
-                    var phone = json["phone"];
-                    var address = json["address"];
-                    var about = json["about"];
-                    var latitude = json["latitude"];
-                    var longitude = json["longitude"];
-                    var greeting = json["greeting"];
-                    var favoriteFruit = json["favoriteFruit"];
+                var id = json["id"];
+                var index = json["index"];
+                var guid = json["guid"];
+                var isActive = json["isActive"];
+                var balance = json["balance"];
+                var picture = json["picture"];
+                var age = json["age"];
+                var eyeColor = json["eyeColor"];
+                var name = json["name"];
+                var firstName = name["first"];
+                var lastName = name["last"];
+                var company = json["company"];
+                var email = json["email"];
+                var phone = json["phone"];
+                var address = json["address"];
+                var about = json["about"];
+                var latitude = json["latitude"];
+                var longitude = json["longitude"];
+                var greeting = json["greeting"];
+                var favoriteFruit = json["favoriteFruit"];
 
-                    var infoString = json.ToString();
-                }
+                var infoString = json.ToString();
             }
+        }
 
-            [Benchmark(Baseline = true)]
-            public void JsonToObjectTest()
+        [Benchmark(Baseline = true)]
+        public void JsonToObjectTest()
+        {
+            for (int i = 0; i < N; i++)
             {
-                for (int i = 0; i < N; i++)
-                {
-                    var parsedObject = JsonConvert.DeserializeObject<Info>(jsonInfo);
-                    var id = parsedObject.id;
-                    var index = parsedObject.index;
-                    var guid = parsedObject.guid;
-                    var isActive = parsedObject.isActive;
-                    var balance = parsedObject.balance;
-                    var picture = parsedObject.picture;
-                    var age = parsedObject.age;
-                    var eyeColor = parsedObject.eyeColor;
-                    var name = parsedObject.name;
-                    var firstName = name.first;
-                    var lastName = name.last;
-                    var company = parsedObject.company;
-                    var email = parsedObject.email;
-                    var phone = parsedObject.phone;
-                    var address = parsedObject.address;
-                    var about = parsedObject.about;
-                    var latitude = parsedObject.latitude;
-                    var longitude = parsedObject.longitude;
-                    var greeting = parsedObject.greeting;
-                    var favoriteFruit = parsedObject.favoriteFruit;
+                var parsedObject = JsonConvert.DeserializeObject<Info>(jsonInfo);
+                var id = parsedObject.id;
+                var index = parsedObject.index;
+                var guid = parsedObject.guid;
+                var isActive = parsedObject.isActive;
+                var balance = parsedObject.balance;
+                var picture = parsedObject.picture;
+                var age = parsedObject.age;
+                var eyeColor = parsedObject.eyeColor;
+                var name = parsedObject.name;
+                var firstName = name.first;
+                var lastName = name.last;
+                var company = parsedObject.company;
+                var email = parsedObject.email;
+                var phone = parsedObject.phone;
+                var address = parsedObject.address;
+                var about = parsedObject.about;
+                var latitude = parsedObject.latitude;
+                var longitude = parsedObject.longitude;
+                var greeting = parsedObject.greeting;
+                var favoriteFruit = parsedObject.favoriteFruit;
 
-                    var infoString = JsonConvert.SerializeObject(parsedObject);
-                }
+                var infoString = JsonConvert.SerializeObject(parsedObject);
             }
+        }
 
-            [Benchmark]
-            public void XmlToObjectTest()
-            {
-                for (int i = 0; i < N; i++)
-                {
-                    var xRoot = new XmlRootAttribute();
-                    xRoot.ElementName = "xmlinfo";
-                    var serializer = new XmlSerializer(typeof(Info), xRoot);
-                    Info info = null;
-                    using (TextReader reader = new StringReader(xmlInfo))
-                    {
-                        info = (Info)serializer.Deserialize(reader);
-                    }
-                    var id = info.id;
-                    var index = info.index;
-                    var guid = info.guid;
-                    var isActive = info.isActive;
-                    var balance = info.balance;
-                    var picture = info.picture;
-                    var age = info.age;
-                    var eyeColor = info.eyeColor;
-                    var name = info.name;
-                    var firstName = name.first;
-                    var lastName = name.last;
-                    var company = info.company;
-                    var email = info.email;
-                    var phone = info.phone;
-                    var address = info.address;
-                    var about = info.about;
-                    var latitude = info.latitude;
-                    var longitude = info.longitude;
-                    var greeting = info.greeting;
-                    var favoriteFruit = info.favoriteFruit;
-
-                    using (StringWriter textWriter = new StringWriter())
-                    {
-                        serializer.Serialize(textWriter, info);
-                        var xmlString = textWriter.ToString();
-                    }
-                }
-            }
-
-            [Benchmark]
-            public void XmlPrepTimeIncludedTest()
+        [Benchmark]
+        public void XmlToObjectTest()
+        {
+            for (int i = 0; i < N; i++)
             {
                 var xRoot = new XmlRootAttribute();
                 xRoot.ElementName = "xmlinfo";
                 var serializer = new XmlSerializer(typeof(Info), xRoot);
-                for (int i = 0; i < N; i++)
+                Info info = null;
+                using (TextReader reader = new StringReader(xmlInfo))
                 {
-                    Info info = null;
-                    using (TextReader reader = new StringReader(xmlInfo))
-                    {
-                        info = (Info)serializer.Deserialize(reader);
-                    }
-                    var id = info.id;
-                    var index = info.index;
-                    var guid = info.guid;
-                    var isActive = info.isActive;
-                    var balance = info.balance;
-                    var picture = info.picture;
-                    var age = info.age;
-                    var eyeColor = info.eyeColor;
-                    var name = info.name;
-                    var firstName = name.first;
-                    var lastName = name.last;
-                    var company = info.company;
-                    var email = info.email;
-                    var phone = info.phone;
-                    var address = info.address;
-                    var about = info.about;
-                    var latitude = info.latitude;
-                    var longitude = info.longitude;
-                    var greeting = info.greeting;
-                    var favoriteFruit = info.favoriteFruit;
+                    info = (Info)serializer.Deserialize(reader);
+                }
+                var id = info.id;
+                var index = info.index;
+                var guid = info.guid;
+                var isActive = info.isActive;
+                var balance = info.balance;
+                var picture = info.picture;
+                var age = info.age;
+                var eyeColor = info.eyeColor;
+                var name = info.name;
+                var firstName = name.first;
+                var lastName = name.last;
+                var company = info.company;
+                var email = info.email;
+                var phone = info.phone;
+                var address = info.address;
+                var about = info.about;
+                var latitude = info.latitude;
+                var longitude = info.longitude;
+                var greeting = info.greeting;
+                var favoriteFruit = info.favoriteFruit;
 
-                    using (StringWriter textWriter = new StringWriter())
-                    {
-                        xmlSerializer.Serialize(textWriter, info);
-                        var xmlString = textWriter.ToString();
-                    }
+                using (StringWriter textWriter = new StringWriter())
+                {
+                    serializer.Serialize(textWriter, info);
+                    var xmlString = textWriter.ToString();
                 }
             }
+        }
 
-            [Benchmark]
-            public void XmlPrepTimeExcludedTest()
+        [Benchmark]
+        public void XmlPrepTimeIncludedTest()
+        {
+            var xRoot = new XmlRootAttribute();
+            xRoot.ElementName = "xmlinfo";
+            var serializer = new XmlSerializer(typeof(Info), xRoot);
+            for (int i = 0; i < N; i++)
             {
-                for (int i = 0; i < N; i++)
+                Info info = null;
+                using (TextReader reader = new StringReader(xmlInfo))
                 {
-                    Info info = null;
-                    using (TextReader reader = new StringReader(xmlInfo))
-                    {
-                        info = (Info)xmlSerializer.Deserialize(reader);
-                    }
-                    var id = info.id;
-                    var index = info.index;
-                    var guid = info.guid;
-                    var isActive = info.isActive;
-                    var balance = info.balance;
-                    var picture = info.picture;
-                    var age = info.age;
-                    var eyeColor = info.eyeColor;
-                    var name = info.name;
-                    var firstName = name.first;
-                    var lastName = name.last;
-                    var company = info.company;
-                    var email = info.email;
-                    var phone = info.phone;
-                    var address = info.address;
-                    var about = info.about;
-                    var latitude = info.latitude;
-                    var longitude = info.longitude;
-                    var greeting = info.greeting;
-                    var favoriteFruit = info.favoriteFruit;
+                    info = (Info)serializer.Deserialize(reader);
+                }
+                var id = info.id;
+                var index = info.index;
+                var guid = info.guid;
+                var isActive = info.isActive;
+                var balance = info.balance;
+                var picture = info.picture;
+                var age = info.age;
+                var eyeColor = info.eyeColor;
+                var name = info.name;
+                var firstName = name.first;
+                var lastName = name.last;
+                var company = info.company;
+                var email = info.email;
+                var phone = info.phone;
+                var address = info.address;
+                var about = info.about;
+                var latitude = info.latitude;
+                var longitude = info.longitude;
+                var greeting = info.greeting;
+                var favoriteFruit = info.favoriteFruit;
 
-                    using (StringWriter textWriter = new StringWriter())
-                    {
-                        xmlSerializer.Serialize(textWriter, info);
-                        var xmlString = textWriter.ToString();
-                    }
+                using (StringWriter textWriter = new StringWriter())
+                {
+                    xmlSerializer.Serialize(textWriter, info);
+                    var xmlString = textWriter.ToString();
                 }
             }
+        }
+
+        [Benchmark]
+        public void XmlPrepTimeExcludedTest()
+        {
+            for (int i = 0; i < N; i++)
+            {
+                Info info = null;
+                using (TextReader reader = new StringReader(xmlInfo))
+                {
+                    info = (Info)xmlSerializer.Deserialize(reader);
+                }
+                var id = info.id;
+                var index = info.index;
+                var guid = info.guid;
+                var isActive = info.isActive;
+                var balance = info.balance;
+                var picture = info.picture;
+                var age = info.age;
+                var eyeColor = info.eyeColor;
+                var name = info.name;
+                var firstName = name.first;
+                var lastName = name.last;
+                var company = info.company;
+                var email = info.email;
+                var phone = info.phone;
+                var address = info.address;
+                var about = info.about;
+                var latitude = info.latitude;
+                var longitude = info.longitude;
+                var greeting = info.greeting;
+                var favoriteFruit = info.favoriteFruit;
+
+                using (StringWriter textWriter = new StringWriter())
+                {
+                    xmlSerializer.Serialize(textWriter, info);
+                    var xmlString = textWriter.ToString();
+                }
+            }
+        }
 
         [Benchmark]
         public void ProtoBufToObjectTest()
