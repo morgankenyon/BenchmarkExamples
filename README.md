@@ -1,2 +1,13 @@
 # BenchmarkExamples
-A repository hold a lot of benchmarking examples. 
+
+This repository exists to hold my benchmarking examples. I'm interested in C# and using it to write performant applications. Each folder inside the BenchmarkExamples project contains the Benchmark and any supporting classes or files. 
+
+Each benchmark is run by passing in the name of the Benchmark to the project's main method. Powershell scripts located in the src directory can be used to run each benchmark individually.
+
+# Articles
+
+It is my desire to also develop my writing skills. A blog article will cover and explain every benchmark contained in this library. At the moment I am writing exclusively on [medium](https://medium.com/@morgankenyon) but ideally would get my own blog at some point. 
+
+Current Blog Posts:
+
+- [Serialization](https://medium.com/p/comparing-c-serialization-techniques-be-wary-of-xml-38f3a4715bbd?source=email-89d87dcc9e73--writer.postDistributed&sk=fc54c021a33b48e8c1916f8d5ff44116)
