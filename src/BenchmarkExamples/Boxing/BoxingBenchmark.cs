@@ -14,62 +14,6 @@ namespace BenchmarkExamples.Boxing
         public int N;
 
         [Benchmark]
-        public void TestNormal()
-        {
-            var dictionary = new Dictionary<int, int>();
-
-            for (int i = 0; i < N; i++)
-            {
-                if (!dictionary.ContainsKey(i))
-                {
-                    dictionary.Add(i, i);
-                }
-            }
-        }
-
-        [Benchmark]
-        public void TestBoxing()
-        {
-            var dictionary = new Dictionary<object, int>();
-
-            for (int i = 0; i < N; i++)
-            {
-                if (!dictionary.ContainsKey(i))
-                {
-                    dictionary.Add(i, i);
-                }
-            }
-        }
-
-        [Benchmark]
-        public void TestInterface()
-        {
-            IDictionary<int, int> dictionary = new Dictionary<int, int>();
-
-            for (int i = 0; i < N; i++)
-            {
-                if (!dictionary.ContainsKey(i))
-                {
-                    dictionary.Add(i, i);
-                }
-            }
-        }
-
-        [Benchmark]
-        public void TestBoxingAndInterface()
-        {
-            IDictionary<object, int> dictionary = new Dictionary<object, int>();
-
-            for (int i = 0; i < N; i++)
-            {
-                if (!dictionary.ContainsKey(i))
-                {
-                    dictionary.Add(i, i);
-                }
-            }
-        }
-
-        [Benchmark]
         public void TestingArrayList()
         {
             var arrayList = new ArrayList();
