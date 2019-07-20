@@ -1,4 +1,5 @@
 ﻿using BenchmarkDotNet.Running;
+using BenchmarkExamples.Boxing;
 using BenchmarkExamples.Serialization;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,8 @@ namespace BenchmarkExamples
     {
         private static readonly List<string> BenchmarkTypes = new List<string>()
         {
-            "Serialization"
+            "Serialization",
+            "Boxing"
         };
         static void Main(string[] args)
         {
@@ -24,8 +26,12 @@ namespace BenchmarkExamples
             switch(option)
             {
                 case "Serialization":
-                    var summary = BenchmarkRunner.Run<SerializationBenchmark>();
+                    var serializationSummary = BenchmarkRunner.Run<SerializationBenchmark>();
                     break;
+                case "Boxing":
+                    var boxingSummary = BenchmarkRunner.Run<BoxingBenchmark>();
+                    break;
+
             }
         }
     }
