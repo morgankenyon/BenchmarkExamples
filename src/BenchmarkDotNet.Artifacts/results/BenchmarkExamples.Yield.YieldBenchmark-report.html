@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>BenchmarkExamples.Yield.YieldBenchmark-20190812-123100</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet=v0.11.5, OS=Windows 10.0.18362
+Intel Core i7-7700HQ CPU 2.80GHz (Kaby Lake), 1 CPU, 8 logical and 4 physical cores
+.NET Core SDK=2.2.300
+  [Host]     : .NET Core 2.2.6 (CoreCLR 4.6.27817.03, CoreFX 4.6.27818.02), 64bit RyuJIT
+  DefaultJob : .NET Core 2.2.6 (CoreCLR 4.6.27817.03, CoreFX 4.6.27818.02), 64bit RyuJIT
+</code></pre>
+<pre><code></code></pre>
+
+<table>
+<thead><tr><th>        Method</th><th>N</th><th>  Mean</th><th>Error</th><th>StdDev</th><th>Median</th><th>Gen 0</th><th>Gen 1</th><th>Gen 2</th><th>Allocated</th>
+</tr>
+</thead><tbody><tr><td>RegularReturn1Level</td><td>10</td><td>2.191 us</td><td>0.0460 us</td><td>0.0853 us</td><td>2.159 us</td><td>1.4839</td><td>-</td><td>-</td><td>4.57 KB</td>
+</tr><tr><td>YieldReturn1Level</td><td>10</td><td>2.593 us</td><td>0.0642 us</td><td>0.1281 us</td><td>2.558 us</td><td>1.2817</td><td>-</td><td>-</td><td>3.95 KB</td>
+</tr><tr><td>RegularReturn2Levels</td><td>10</td><td>27.953 us</td><td>0.5569 us</td><td>1.1747 us</td><td>27.547 us</td><td>16.9373</td><td>-</td><td>-</td><td>52.11 KB</td>
+</tr><tr><td>YieldReturn2Levels</td><td>10</td><td>16.082 us</td><td>0.6043 us</td><td>0.6959 us</td><td>15.742 us</td><td>9.3994</td><td>-</td><td>-</td><td>28.91 KB</td>
+</tr><tr><td>RegularReturn3Levels</td><td>10</td><td>281.971 us</td><td>5.6377 us</td><td>12.3749 us</td><td>275.433 us</td><td>156.7383</td><td>-</td><td>-</td><td>483.52 KB</td>
+</tr><tr><td>YieldReturn3Levels</td><td>10</td><td>160.055 us</td><td>3.2334 us</td><td>9.1199 us</td><td>156.720 us</td><td>80.8105</td><td>-</td><td>-</td><td>249.06 KB</td>
+</tr><tr><td>RegularReturn4Levels</td><td>10</td><td>3,616.332 us</td><td>71.9992 us</td><td>138.7181 us</td><td>3,575.700 us</td><td>1097.6563</td><td>332.0313</td><td>332.0313</td><td>4610.63 KB</td>
+</tr><tr><td>YieldReturn4Levels</td><td>10</td><td>2,065.284 us</td><td>45.8461 us</td><td>123.1625 us</td><td>2,019.865 us</td><td>664.0625</td><td>332.0313</td><td>332.0313</td><td>2938.91 KB</td>
+</tr></tbody></table>
+</body>
+</html>
