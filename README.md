@@ -6,7 +6,7 @@ Each benchmark is run by passing in the name of the Benchmark to the project's m
 
 # Articles
 
-It is my desire to also develop my writing skills. A blog article will cover and explain every benchmark contained in this library. At the moment I am writing exclusively on [medium](https://medium.com/@morgankenyon) but ideally would get my own blog at some point. 
+It is my desire to also develop my writing skills. A blog article will cover and explain every benchmark contained in this library. At the moment I am writing on [medium](https://medium.com/@morgankenyon) and [dev.to](https://dev.to/morganw09) but will create my own blog at some point.
 
 Current Blog Posts:
 
