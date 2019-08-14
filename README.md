@@ -11,3 +11,4 @@ It is my desire to also develop my writing skills. A blog article will cover and
 Current Blog Posts:
 
 - [Serialization](https://medium.com/p/comparing-c-serialization-techniques-be-wary-of-xml-38f3a4715bbd?source=email-89d87dcc9e73--writer.postDistributed&sk=fc54c021a33b48e8c1916f8d5ff44116)
+- [Yield](https://dev.to/morganw09/benchmarking-the-yield-statement-in-c-2d8g)
