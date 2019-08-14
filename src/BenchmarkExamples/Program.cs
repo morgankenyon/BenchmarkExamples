@@ -1,6 +1,7 @@
 ﻿using BenchmarkDotNet.Running;
 using BenchmarkExamples.Boxing;
 using BenchmarkExamples.Serialization;
+using BenchmarkExamples.Yield;
 using System;
 using System.Collections.Generic;
 
@@ -11,7 +12,8 @@ namespace BenchmarkExamples
         private static readonly List<string> BenchmarkTypes = new List<string>()
         {
             "Serialization",
-            "Boxing"
+            "Boxing",
+            "Yield"
         };
         static void Main(string[] args)
         {
@@ -30,6 +32,9 @@ namespace BenchmarkExamples
                     break;
                 case "Boxing":
                     var boxingSummary = BenchmarkRunner.Run<BoxingBenchmark>();
+                    break;
+                case "Yield":
+                    var yieldSummary = BenchmarkRunner.Run<YieldBenchmark>();
                     break;
 
             }
