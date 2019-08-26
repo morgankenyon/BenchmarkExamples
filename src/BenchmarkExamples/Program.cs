@@ -1,5 +1,6 @@
 ﻿using BenchmarkDotNet.Running;
 using BenchmarkExamples.Boxing;
+using BenchmarkExamples.Dynamic;
 using BenchmarkExamples.Serialization;
 using BenchmarkExamples.Yield;
 using System;
@@ -13,7 +14,8 @@ namespace BenchmarkExamples
         {
             "Serialization",
             "Boxing",
-            "Yield"
+            "Yield",
+            "Dynamic"
         };
         static void Main(string[] args)
         {
@@ -35,6 +37,9 @@ namespace BenchmarkExamples
                     break;
                 case "Yield":
                     var yieldSummary = BenchmarkRunner.Run<YieldBenchmark>();
+                    break;
+                case "Dynamic":
+                    var dynamicSummary = BenchmarkRunner.Run<DynamicBenchmark>();
                     break;
 
             }

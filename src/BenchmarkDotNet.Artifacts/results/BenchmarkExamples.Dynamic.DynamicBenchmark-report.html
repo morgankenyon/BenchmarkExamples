@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>BenchmarkExamples.Dynamic.DynamicBenchmark-20190825-025341</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet=v0.11.5, OS=Windows 10.0.18362
+Intel Core i7-7700HQ CPU 2.80GHz (Kaby Lake), 1 CPU, 8 logical and 4 physical cores
+.NET Core SDK=2.2.300
+  [Host]     : .NET Core 2.2.6 (CoreCLR 4.6.27817.03, CoreFX 4.6.27818.02), 64bit RyuJIT
+  DefaultJob : .NET Core 2.2.6 (CoreCLR 4.6.27817.03, CoreFX 4.6.27818.02), 64bit RyuJIT
+</code></pre>
+<pre><code></code></pre>
+
+<table>
+<thead><tr><th>    Method</th><th>N</th><th>  Mean</th><th> Error</th><th>StdDev</th><th>Median</th><th>Gen 0</th><th>Gen 1</th><th>Gen 2</th><th>Allocated</th>
+</tr>
+</thead><tbody><tr><td>SumOneToN</td><td>100</td><td>43.46 ns</td><td>1.355 ns</td><td>3.822 ns</td><td>42.86 ns</td><td>-</td><td>-</td><td>-</td><td>-</td>
+</tr><tr><td>DynamicSumOneToN</td><td>100</td><td>730.79 ns</td><td>14.481 ns</td><td>38.653 ns</td><td>728.45 ns</td><td>0.7696</td><td>-</td><td>-</td><td>2424 B</td>
+</tr><tr><td>SumOneToN</td><td>10000</td><td>3,572.07 ns</td><td>170.544 ns</td><td>483.806 ns</td><td>3,398.05 ns</td><td>-</td><td>-</td><td>-</td><td>-</td>
+</tr><tr><td>DynamicSumOneToN</td><td>10000</td><td>66,913.28 ns</td><td>1,318.762 ns</td><td>2,922.286 ns</td><td>66,290.49 ns</td><td>76.2939</td><td>-</td><td>-</td><td>240024 B</td>
+</tr></tbody></table>
+</body>
+</html>
