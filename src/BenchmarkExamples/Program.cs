@@ -2,6 +2,7 @@
 using BenchmarkExamples.Boxing;
 using BenchmarkExamples.Dynamic;
 using BenchmarkExamples.Serialization;
+using BenchmarkExamples.SyncAsync;
 using BenchmarkExamples.Yield;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,8 @@ namespace BenchmarkExamples
             "Serialization",
             "Boxing",
             "Yield",
-            "Dynamic"
+            "Dynamic",
+            "SyncAsync"
         };
         static void Main(string[] args)
         {
@@ -27,7 +29,7 @@ namespace BenchmarkExamples
             }
 
             var option = args[0];
-            switch(option)
+            switch (option)
             {
                 case "Serialization":
                     var serializationSummary = BenchmarkRunner.Run<SerializationBenchmark>();
@@ -40,6 +42,9 @@ namespace BenchmarkExamples
                     break;
                 case "Dynamic":
                     var dynamicSummary = BenchmarkRunner.Run<DynamicBenchmark>();
+                    break;
+                case "SyncAsync":
+                    var syncAsync = BenchmarkRunner.Run<SyncAsyncBenchmark>();
                     break;
 
             }

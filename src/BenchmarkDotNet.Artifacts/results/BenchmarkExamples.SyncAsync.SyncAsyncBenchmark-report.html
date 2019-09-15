@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>BenchmarkExamples.SyncAsync.SyncAsyncBenchmark-20190915-015801</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet=v0.11.5, OS=Windows 10.0.18362
+Intel Core i7-7700HQ CPU 2.80GHz (Kaby Lake), 1 CPU, 8 logical and 4 physical cores
+.NET Core SDK=2.2.300
+  [Host]     : .NET Core 2.2.7 (CoreCLR 4.6.28008.02, CoreFX 4.6.28008.03), 64bit RyuJIT
+  DefaultJob : .NET Core 2.2.7 (CoreCLR 4.6.28008.02, CoreFX 4.6.28008.03), 64bit RyuJIT
+</code></pre>
+<pre><code></code></pre>
+
+<table>
+<thead><tr><th>          Method</th><th>N</th><th>Mean</th><th>Error</th><th>StdDev</th><th>Median</th><th>Gen 0</th><th>Gen 1</th><th>Gen 2</th><th>Allocated</th>
+</tr>
+</thead><tbody><tr><td>TestingSyncMethod</td><td>1000</td><td>4.282 us</td><td>0.0938 us</td><td>0.2735 us</td><td>4.258 us</td><td>7.6218</td><td>-</td><td>-</td><td>23.44 KB</td>
+</tr><tr><td>TestingSyncAsyncMethod</td><td>1000</td><td>35.206 us</td><td>1.0723 us</td><td>1.2348 us</td><td>34.858 us</td><td>30.2734</td><td>-</td><td>-</td><td>93.12 KB</td>
+</tr><tr><td>TestingSyncMethod</td><td>5000</td><td>21.333 us</td><td>0.5167 us</td><td>1.4402 us</td><td>20.896 us</td><td>38.1165</td><td>-</td><td>-</td><td>117.19 KB</td>
+</tr><tr><td>TestingSyncAsyncMethod</td><td>5000</td><td>182.263 us</td><td>4.4757 us</td><td>12.9847 us</td><td>182.059 us</td><td>152.3438</td><td>-</td><td>-</td><td>468.12 KB</td>
+</tr><tr><td>TestingSyncMethod</td><td>10000</td><td>45.021 us</td><td>0.9646 us</td><td>2.7522 us</td><td>44.505 us</td><td>76.2329</td><td>-</td><td>-</td><td>234.38 KB</td>
+</tr><tr><td>TestingSyncAsyncMethod</td><td>10000</td><td>351.563 us</td><td>6.9928 us</td><td>18.6652 us</td><td>348.298 us</td><td>304.6875</td><td>-</td><td>-</td><td>936.87 KB</td>
+</tr></tbody></table>
+</body>
+</html>
