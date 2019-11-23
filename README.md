@@ -14,3 +14,4 @@ Current Blog Posts:
 - [Yield](https://dev.to/morganw09/benchmarking-the-yield-statement-in-c-2d8g)
 - [Dynamic Keyword](https://dev.to/morganw09/benchmarking-and-exploring-c-s-dynamic-keyword-1l5i)
 - [Synchronous Async](https://thesharperdev.com/the-cost-of-synchronous-async-methods)
+- [For Loop Variants](https://thesharperdev.com/benchmarking-for-loop-variants)
