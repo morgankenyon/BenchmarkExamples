@@ -1,6 +1,7 @@
 ﻿using BenchmarkDotNet.Running;
 using BenchmarkExamples.Boxing;
 using BenchmarkExamples.Dynamic;
+using BenchmarkExamples.ForLoop;
 using BenchmarkExamples.Serialization;
 using BenchmarkExamples.SyncAsync;
 using BenchmarkExamples.Yield;
@@ -17,7 +18,8 @@ namespace BenchmarkExamples
             "Boxing",
             "Yield",
             "Dynamic",
-            "SyncAsync"
+            "SyncAsync",
+            "ForLoop"
         };
         static void Main(string[] args)
         {
@@ -45,6 +47,9 @@ namespace BenchmarkExamples
                     break;
                 case "SyncAsync":
                     var syncAsync = BenchmarkRunner.Run<SyncAsyncBenchmark>();
+                    break;
+                case "ForLoop":
+                    var forLoop = BenchmarkRunner.Run<ForLoopBenchmark>();
                     break;
 
             }
