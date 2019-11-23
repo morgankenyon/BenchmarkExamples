@@ -12,6 +12,18 @@ namespace BenchmarkExamples.ForLoop
         [Params(100, 1000, 10000)]
         public int N;
 
+        public List<int> intList;
+
+        [GlobalSetup]
+        public void PrepareList()
+        {
+            intList = new List<int>();
+            for(int i = 0; i < N; i++)
+            {
+                intList.Add(i);
+            }
+        }
+
         [Benchmark(Baseline = true)]
         public void RegularForLoop()
         {
@@ -39,11 +51,10 @@ namespace BenchmarkExamples.ForLoop
                 sum++;
         }
 
-        [Benchmark)]
+        [Benchmark]
         public void RegularForLoopList()
         {
             var sum = 0;
-            var intList = new List<int>(N);
             for (int i = 0; i < intList.Count; i++)
                 sum++;
         }
@@ -52,7 +63,6 @@ namespace BenchmarkExamples.ForLoop
         public void ForEachLoopList()
         {
             var sum = 0;
-            var intList = new List<int>(N);
             foreach (var i in intList)
                 sum++;
         }
@@ -61,7 +71,6 @@ namespace BenchmarkExamples.ForLoop
         public void WithIndexLoopList()
         {
             var sum = 0;
-            var intList = new List<int>(N);
             foreach (var (item, index) in intList.WithIndex())
                 sum++;
         }
