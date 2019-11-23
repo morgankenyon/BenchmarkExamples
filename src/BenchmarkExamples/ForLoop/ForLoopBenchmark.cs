@@ -31,15 +31,19 @@ namespace BenchmarkExamples.ForLoop
         {
             var sum = 0;
             for (int i = 0; i < intArray.Length; i++)
-                sum++;
+                sum += i + intArray[i];
         }
 
         [Benchmark]
         public void ForEachLoop()
         {
             var sum = 0;
+            int index = 0;
             foreach (var i in intArray)
-                sum++;
+            {
+                sum += index + i;
+                index++;
+            }
         }
 
         [Benchmark]
@@ -47,7 +51,7 @@ namespace BenchmarkExamples.ForLoop
         {
             var sum = 0;
             foreach (var (item, index) in intArray.WithIndex())
-                sum++;
+                sum += item + index;
         }
 
         [Benchmark]
@@ -55,7 +59,7 @@ namespace BenchmarkExamples.ForLoop
         {
             var sum = 0;
             foreach (var (item, index) in intArray.WithIndexCachedDelegate())
-                sum++;
+                sum += item + index;
         }
 
         [Benchmark]
@@ -63,7 +67,7 @@ namespace BenchmarkExamples.ForLoop
         {
             var sum = 0;
             foreach (var (item, index) in intArray.WithIndexIterator())
-                sum++;
+                sum += item + index;
         }
 
         [Benchmark]
@@ -71,7 +75,7 @@ namespace BenchmarkExamples.ForLoop
         {
             var sum = 0;
             foreach (var (item, index) in intArray.WithIndexCustomEnumerator())
-                sum++;
+                sum += item + index;
         }
 
         [Benchmark]
@@ -79,7 +83,7 @@ namespace BenchmarkExamples.ForLoop
         {
             var sum = 0;
             foreach (var (item, index) in intArray.WithIndexArray())
-                sum++;
+                sum += item + index;
         }
 
         [Benchmark]
@@ -87,15 +91,19 @@ namespace BenchmarkExamples.ForLoop
         {
             var sum = 0;
             for (int i = 0; i < intList.Count; i++)
-                sum++;
+                sum += i + intList[i];
         }
 
         [Benchmark]
         public void ForEachLoopList()
         {
             var sum = 0;
+            int index = 0;
             foreach (var i in intList)
-                sum++;
+            {
+                sum += index + i;
+                index++;
+            }
         }
 
         [Benchmark]
@@ -103,7 +111,7 @@ namespace BenchmarkExamples.ForLoop
         {
             var sum = 0;
             foreach (var (item, index) in intList.WithIndex())
-                sum++;
+                sum += item + index;
         }
 
 
@@ -112,7 +120,7 @@ namespace BenchmarkExamples.ForLoop
         {
             var sum = 0;
             foreach (var (item, index) in intList.WithIndexCachedDelegate())
-                sum++;
+                sum += item + index;
         }
 
         
@@ -121,7 +129,7 @@ namespace BenchmarkExamples.ForLoop
         {
             var sum = 0;
             foreach (var (item, index) in intList.WithIndexIterator())
-                sum++;
+                sum += item + index;
         }
 
 
@@ -130,7 +138,7 @@ namespace BenchmarkExamples.ForLoop
         {
             var sum = 0;
             foreach (var (item, index) in intList.WithIndexCustomEnumerator())
-                sum++;
+                sum += item + index;
         }
 
         [Benchmark]
@@ -138,7 +146,7 @@ namespace BenchmarkExamples.ForLoop
         {
             var sum = 0;
             foreach (var (item, index) in intList.WithIndexList())
-                sum++;
+                sum += item + index;
         }
     }
 
