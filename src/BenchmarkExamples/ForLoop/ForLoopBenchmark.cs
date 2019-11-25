@@ -15,7 +15,7 @@ namespace BenchmarkExamples.ForLoop
         public int[] intArray;
 
         [GlobalSetup]
-        public void PrepareList()
+        public void Prepare()
         {
             intList = new List<int>();
             intArray = new int[N];
@@ -123,7 +123,7 @@ namespace BenchmarkExamples.ForLoop
                 sum += item + index;
         }
 
-        
+
         [Benchmark]
         public void WithIndexIteratorLoopList()
         {

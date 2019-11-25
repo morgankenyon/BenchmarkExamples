@@ -2,7 +2,7 @@
 <html lang='en'>
 <head>
 <meta charset='utf-8' />
-<title>BenchmarkExamples.ForLoop.ForLoopBenchmark-20191123-082542</title>
+<title>BenchmarkExamples.ForLoop.ForLoopBenchmark-20191125-122342</title>
 
 <style type="text/css">
 	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
@@ -14,7 +14,7 @@
 <body>
 <pre><code>
 BenchmarkDotNet=v0.11.5, OS=Windows 10.0.18362
-Intel Core i5-7300U CPU 2.60GHz (Kaby Lake), 1 CPU, 4 logical and 2 physical cores
+Intel Core i7-7700HQ CPU 2.80GHz (Kaby Lake), 1 CPU, 8 logical and 4 physical cores
 .NET Core SDK=2.2.300
   [Host]     : .NET Core 2.2.7 (CoreCLR 4.6.28008.02, CoreFX 4.6.28008.03), 64bit RyuJIT
   DefaultJob : .NET Core 2.2.7 (CoreCLR 4.6.28008.02, CoreFX 4.6.28008.03), 64bit RyuJIT
@@ -22,50 +22,14 @@ Intel Core i5-7300U CPU 2.60GHz (Kaby Lake), 1 CPU, 4 logical and 2 physical cor
 <pre><code></code></pre>
 
 <table>
-<thead><tr><th>                        Method</th><th>N</th><th>   Mean</th><th>  Error</th><th> StdDev</th><th>Ratio</th><th>RatioSD</th><th>Gen 0</th><th>Gen 1</th><th>Gen 2</th><th>Allocated</th>
+<thead><tr><th>                        Method</th><th>N</th><th>  Mean</th><th> Error</th><th>StdDev</th><th>Ratio</th><th>RatioSD</th><th>Gen 0</th><th>Gen 1</th><th>Gen 2</th><th>Allocated</th>
 </tr>
-</thead><tbody><tr><td>RegularForLoop</td><td>100</td><td>75.29 ns</td><td>0.6080 ns</td><td>0.5390 ns</td><td>1.00</td><td>0.00</td><td>-</td><td>-</td><td>-</td><td>-</td>
-</tr><tr><td>ForEachLoop</td><td>100</td><td>64.58 ns</td><td>0.3106 ns</td><td>0.2753 ns</td><td>0.86</td><td>0.01</td><td>-</td><td>-</td><td>-</td><td>-</td>
-</tr><tr><td>WithIndexLoop</td><td>100</td><td>1,484.17 ns</td><td>2.6752 ns</td><td>2.5023 ns</td><td>19.72</td><td>0.16</td><td>0.0706</td><td>-</td><td>-</td><td>112 B</td>
-</tr><tr><td>WithIndexCachedDelegateLoop</td><td>100</td><td>1,473.91 ns</td><td>12.5878 ns</td><td>10.5114 ns</td><td>19.57</td><td>0.14</td><td>0.0706</td><td>-</td><td>-</td><td>112 B</td>
-</tr><tr><td>WithIndexIteratorLoop</td><td>100</td><td>1,245.92 ns</td><td>5.3578 ns</td><td>5.0117 ns</td><td>16.55</td><td>0.12</td><td>0.0591</td><td>-</td><td>-</td><td>96 B</td>
-</tr><tr><td>WithIndexCustomEnumeratorLoop</td><td>100</td><td>972.34 ns</td><td>3.5635 ns</td><td>2.9757 ns</td><td>12.91</td><td>0.11</td><td>0.0191</td><td>-</td><td>-</td><td>32 B</td>
-</tr><tr><td>WithIndexSpecificEnumeratorLoopArray</td><td>100</td><td>683.54 ns</td><td>2.4219 ns</td><td>2.1470 ns</td><td>9.08</td><td>0.07</td><td>-</td><td>-</td><td>-</td><td>-</td>
-</tr><tr><td>RegularForLoopList</td><td>100</td><td>116.02 ns</td><td>0.4040 ns</td><td>0.3154 ns</td><td>1.54</td><td>0.01</td><td>-</td><td>-</td><td>-</td><td>-</td>
-</tr><tr><td>ForEachLoopList</td><td>100</td><td>231.11 ns</td><td>1.1563 ns</td><td>1.0816 ns</td><td>3.07</td><td>0.02</td><td>-</td><td>-</td><td>-</td><td>-</td>
-</tr><tr><td>WithIndexLoopList</td><td>100</td><td>1,602.86 ns</td><td>2.8957 ns</td><td>2.5670 ns</td><td>21.29</td><td>0.17</td><td>0.0744</td><td>-</td><td>-</td><td>120 B</td>
-</tr><tr><td>WithIndexCachedDelegateLoopList</td><td>100</td><td>1,592.63 ns</td><td>5.0318 ns</td><td>4.4606 ns</td><td>21.15</td><td>0.15</td><td>0.0744</td><td>-</td><td>-</td><td>120 B</td>
-</tr><tr><td>WithIndexIteratorLoopList</td><td>100</td><td>1,336.89 ns</td><td>6.3426 ns</td><td>5.6226 ns</td><td>17.76</td><td>0.15</td><td>0.0648</td><td>-</td><td>-</td><td>104 B</td>
-</tr><tr><td>WithIndexCustomEnumeratorLoopList</td><td>100</td><td>1,066.05 ns</td><td>2.1547 ns</td><td>2.0155 ns</td><td>14.16</td><td>0.11</td><td>0.0248</td><td>-</td><td>-</td><td>40 B</td>
-</tr><tr><td>WithIndexSpecificEnumeratorLoopList</td><td>100</td><td>862.67 ns</td><td>1.9767 ns</td><td>1.7523 ns</td><td>11.46</td><td>0.09</td><td>-</td><td>-</td><td>-</td><td>-</td>
-</tr><tr><td>RegularForLoop</td><td>1000</td><td>704.05 ns</td><td>3.5087 ns</td><td>3.1104 ns</td><td>1.00</td><td>0.00</td><td>-</td><td>-</td><td>-</td><td>-</td>
-</tr><tr><td>ForEachLoop</td><td>1000</td><td>594.27 ns</td><td>3.1980 ns</td><td>2.9914 ns</td><td>0.84</td><td>0.00</td><td>-</td><td>-</td><td>-</td><td>-</td>
-</tr><tr><td>WithIndexLoop</td><td>1000</td><td>14,265.50 ns</td><td>47.1638 ns</td><td>39.3839 ns</td><td>20.26</td><td>0.10</td><td>0.0610</td><td>-</td><td>-</td><td>112 B</td>
-</tr><tr><td>WithIndexCachedDelegateLoop</td><td>1000</td><td>14,151.59 ns</td><td>17.2253 ns</td><td>16.1126 ns</td><td>20.10</td><td>0.08</td><td>0.0610</td><td>-</td><td>-</td><td>112 B</td>
-</tr><tr><td>WithIndexIteratorLoop</td><td>1000</td><td>12,067.26 ns</td><td>58.9621 ns</td><td>52.2683 ns</td><td>17.14</td><td>0.12</td><td>0.0458</td><td>-</td><td>-</td><td>96 B</td>
-</tr><tr><td>WithIndexCustomEnumeratorLoop</td><td>1000</td><td>9,640.24 ns</td><td>26.2846 ns</td><td>21.9489 ns</td><td>13.69</td><td>0.05</td><td>0.0153</td><td>-</td><td>-</td><td>32 B</td>
-</tr><tr><td>WithIndexSpecificEnumeratorLoopArray</td><td>1000</td><td>6,844.83 ns</td><td>17.2629 ns</td><td>16.1477 ns</td><td>9.72</td><td>0.04</td><td>-</td><td>-</td><td>-</td><td>-</td>
-</tr><tr><td>RegularForLoopList</td><td>1000</td><td>1,094.84 ns</td><td>27.4160 ns</td><td>22.8936 ns</td><td>1.56</td><td>0.03</td><td>-</td><td>-</td><td>-</td><td>-</td>
-</tr><tr><td>ForEachLoopList</td><td>1000</td><td>2,126.07 ns</td><td>13.1167 ns</td><td>12.2694 ns</td><td>3.02</td><td>0.03</td><td>-</td><td>-</td><td>-</td><td>-</td>
-</tr><tr><td>WithIndexLoopList</td><td>1000</td><td>15,403.61 ns</td><td>37.0226 ns</td><td>30.9155 ns</td><td>21.88</td><td>0.09</td><td>0.0610</td><td>-</td><td>-</td><td>120 B</td>
-</tr><tr><td>WithIndexCachedDelegateLoopList</td><td>1000</td><td>15,435.64 ns</td><td>134.0825 ns</td><td>118.8606 ns</td><td>21.92</td><td>0.18</td><td>0.0610</td><td>-</td><td>-</td><td>120 B</td>
-</tr><tr><td>WithIndexIteratorLoopList</td><td>1000</td><td>12,920.56 ns</td><td>73.5482 ns</td><td>65.1985 ns</td><td>18.35</td><td>0.06</td><td>0.0610</td><td>-</td><td>-</td><td>104 B</td>
-</tr><tr><td>WithIndexCustomEnumeratorLoopList</td><td>1000</td><td>10,562.63 ns</td><td>39.9885 ns</td><td>37.4053 ns</td><td>15.00</td><td>0.10</td><td>0.0153</td><td>-</td><td>-</td><td>40 B</td>
-</tr><tr><td>WithIndexSpecificEnumeratorLoopList</td><td>1000</td><td>8,414.32 ns</td><td>13.9246 ns</td><td>13.0251 ns</td><td>11.95</td><td>0.06</td><td>-</td><td>-</td><td>-</td><td>-</td>
-</tr><tr><td>RegularForLoop</td><td>10000</td><td>7,015.39 ns</td><td>59.7616 ns</td><td>49.9036 ns</td><td>1.00</td><td>0.00</td><td>-</td><td>-</td><td>-</td><td>-</td>
-</tr><tr><td>ForEachLoop</td><td>10000</td><td>5,841.42 ns</td><td>24.0700 ns</td><td>22.5151 ns</td><td>0.83</td><td>0.01</td><td>-</td><td>-</td><td>-</td><td>-</td>
-</tr><tr><td>WithIndexLoop</td><td>10000</td><td>142,305.80 ns</td><td>679.5454 ns</td><td>602.3993 ns</td><td>20.28</td><td>0.15</td><td>-</td><td>-</td><td>-</td><td>112 B</td>
-</tr><tr><td>WithIndexCachedDelegateLoop</td><td>10000</td><td>141,137.35 ns</td><td>1,323.8123 ns</td><td>1,238.2949 ns</td><td>20.11</td><td>0.26</td><td>-</td><td>-</td><td>-</td><td>112 B</td>
-</tr><tr><td>WithIndexIteratorLoop</td><td>10000</td><td>120,804.36 ns</td><td>560.9428 ns</td><td>524.7063 ns</td><td>17.22</td><td>0.15</td><td>-</td><td>-</td><td>-</td><td>96 B</td>
-</tr><tr><td>WithIndexCustomEnumeratorLoop</td><td>10000</td><td>96,032.36 ns</td><td>177.1508 ns</td><td>165.7070 ns</td><td>13.69</td><td>0.09</td><td>-</td><td>-</td><td>-</td><td>32 B</td>
-</tr><tr><td>WithIndexSpecificEnumeratorLoopArray</td><td>10000</td><td>68,525.07 ns</td><td>123.2870 ns</td><td>109.2907 ns</td><td>9.77</td><td>0.06</td><td>-</td><td>-</td><td>-</td><td>-</td>
-</tr><tr><td>RegularForLoopList</td><td>10000</td><td>10,830.09 ns</td><td>18.4434 ns</td><td>15.4011 ns</td><td>1.54</td><td>0.01</td><td>-</td><td>-</td><td>-</td><td>-</td>
-</tr><tr><td>ForEachLoopList</td><td>10000</td><td>20,976.38 ns</td><td>76.7002 ns</td><td>67.9927 ns</td><td>2.99</td><td>0.02</td><td>-</td><td>-</td><td>-</td><td>-</td>
-</tr><tr><td>WithIndexLoopList</td><td>10000</td><td>153,289.78 ns</td><td>947.7729 ns</td><td>886.5474 ns</td><td>21.87</td><td>0.24</td><td>-</td><td>-</td><td>-</td><td>120 B</td>
-</tr><tr><td>WithIndexCachedDelegateLoopList</td><td>10000</td><td>153,241.20 ns</td><td>602.7275 ns</td><td>503.3048 ns</td><td>21.84</td><td>0.18</td><td>-</td><td>-</td><td>-</td><td>120 B</td>
-</tr><tr><td>WithIndexIteratorLoopList</td><td>10000</td><td>128,684.03 ns</td><td>869.2305 ns</td><td>770.5502 ns</td><td>18.33</td><td>0.15</td><td>-</td><td>-</td><td>-</td><td>104 B</td>
-</tr><tr><td>WithIndexCustomEnumeratorLoopList</td><td>10000</td><td>105,263.91 ns</td><td>194.7628 ns</td><td>182.1812 ns</td><td>15.00</td><td>0.10</td><td>-</td><td>-</td><td>-</td><td>40 B</td>
-</tr><tr><td>WithIndexSpecificEnumeratorLoopList</td><td>10000</td><td>83,874.38 ns</td><td>121.4005 ns</td><td>107.6184 ns</td><td>11.96</td><td>0.08</td><td>-</td><td>-</td><td>-</td><td>-</td>
+</thead><tbody><tr><td>RegularForLoop</td><td>100</td><td>85.50 ns</td><td>1.871 ns</td><td>2.001 ns</td><td>1.00</td><td>0.00</td><td>-</td><td>-</td><td>-</td><td>-</td>
+</tr><tr><td>WithIndexSpecificEnumeratorLoopArray</td><td>100</td><td>738.91 ns</td><td>14.403 ns</td><td>14.145 ns</td><td>8.62</td><td>0.17</td><td>-</td><td>-</td><td>-</td><td>-</td>
+</tr><tr><td>RegularForLoop</td><td>1000</td><td>775.28 ns</td><td>15.350 ns</td><td>33.370 ns</td><td>1.00</td><td>0.00</td><td>-</td><td>-</td><td>-</td><td>-</td>
+</tr><tr><td>WithIndexSpecificEnumeratorLoopArray</td><td>1000</td><td>7,460.11 ns</td><td>147.641 ns</td><td>216.411 ns</td><td>9.54</td><td>0.51</td><td>-</td><td>-</td><td>-</td><td>-</td>
+</tr><tr><td>RegularForLoop</td><td>10000</td><td>7,538.59 ns</td><td>148.172 ns</td><td>251.607 ns</td><td>1.00</td><td>0.00</td><td>-</td><td>-</td><td>-</td><td>-</td>
+</tr><tr><td>WithIndexSpecificEnumeratorLoopArray</td><td>10000</td><td>73,774.65 ns</td><td>1,454.560 ns</td><td>2,264.574 ns</td><td>9.76</td><td>0.40</td><td>-</td><td>-</td><td>-</td><td>-</td>
 </tr></tbody></table>
 </body>
 </html>
