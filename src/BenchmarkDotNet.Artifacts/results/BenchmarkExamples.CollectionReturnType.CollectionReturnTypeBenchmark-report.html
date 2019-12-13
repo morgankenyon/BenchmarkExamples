@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>BenchmarkExamples.CollectionReturnType.CollectionReturnTypeBenchmark-20191212-083446</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet=v0.11.5, OS=Windows 10.0.18362
+Intel Core i7-8565U CPU 1.80GHz (Whiskey Lake), 1 CPU, 8 logical and 4 physical cores
+.NET Core SDK=2.2.300
+  [Host]     : .NET Core 2.2.5 (CoreCLR 4.6.27617.05, CoreFX 4.6.27618.01), 64bit RyuJIT
+  DefaultJob : .NET Core 2.2.5 (CoreCLR 4.6.27617.05, CoreFX 4.6.27618.01), 64bit RyuJIT
+</code></pre>
+<pre><code></code></pre>
+
+<table>
+<thead><tr><th>     Method</th><th>N</th><th>Mean</th><th>Error</th><th>StdDev</th><th>Ratio</th><th>RatioSD</th><th>Gen 0</th><th>Gen 1</th><th>Gen 2</th><th>Allocated</th>
+</tr>
+</thead><tbody><tr><td>ListAsList</td><td>100</td><td>1.173 us</td><td>0.0199 us</td><td>0.0166 us</td><td>1.00</td><td>0.00</td><td>1.0948</td><td>-</td><td>-</td><td>4.49 KB</td>
+</tr><tr><td>CollectionToList</td><td>100</td><td>2.326 us</td><td>0.0526 us</td><td>0.0894 us</td><td>2.02</td><td>0.08</td><td>1.3084</td><td>-</td><td>-</td><td>5.37 KB</td>
+</tr><tr><td>IListToList</td><td>100</td><td>1.453 us</td><td>0.0290 us</td><td>0.0367 us</td><td>1.24</td><td>0.04</td><td>1.3008</td><td>-</td><td>-</td><td>5.34 KB</td>
+</tr><tr><td>IEnumerableToList</td><td>100</td><td>1.426 us</td><td>0.0065 us</td><td>0.0058 us</td><td>1.22</td><td>0.02</td><td>1.3008</td><td>-</td><td>-</td><td>5.34 KB</td>
+</tr><tr><td>ICollectionToList</td><td>100</td><td>1.396 us</td><td>0.0235 us</td><td>0.0208 us</td><td>1.19</td><td>0.02</td><td>1.3008</td><td>-</td><td>-</td><td>5.34 KB</td>
+</tr><tr><td>ListAsList</td><td>1000</td><td>10.540 us</td><td>0.1164 us</td><td>0.0972 us</td><td>1.00</td><td>0.00</td><td>9.6741</td><td>-</td><td>-</td><td>39.66 KB</td>
+</tr><tr><td>CollectionToList</td><td>1000</td><td>19.156 us</td><td>0.3370 us</td><td>0.2987 us</td><td>1.82</td><td>0.03</td><td>11.5967</td><td>-</td><td>-</td><td>47.56 KB</td>
+</tr><tr><td>IListToList</td><td>1000</td><td>11.256 us</td><td>0.1546 us</td><td>0.1446 us</td><td>1.07</td><td>0.02</td><td>11.5967</td><td>-</td><td>-</td><td>47.53 KB</td>
+</tr><tr><td>IEnumerableToList</td><td>1000</td><td>11.290 us</td><td>0.1328 us</td><td>0.1242 us</td><td>1.07</td><td>0.02</td><td>11.5967</td><td>-</td><td>-</td><td>47.53 KB</td>
+</tr><tr><td>ICollectionToList</td><td>1000</td><td>11.369 us</td><td>0.1291 us</td><td>0.1144 us</td><td>1.08</td><td>0.01</td><td>11.5967</td><td>-</td><td>-</td><td>47.53 KB</td>
+</tr></tbody></table>
+</body>
+</html>

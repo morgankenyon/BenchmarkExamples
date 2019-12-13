@@ -2,7 +2,7 @@
 <html lang='en'>
 <head>
 <meta charset='utf-8' />
-<title>BenchmarkExamples.Boxing.BoxingBenchmark-20190720-024456</title>
+<title>BenchmarkExamples.Boxing.BoxingBenchmark-20191207-092415</title>
 
 <style type="text/css">
 	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
@@ -14,19 +14,19 @@
 <body>
 <pre><code>
 BenchmarkDotNet=v0.11.5, OS=Windows 10.0.18362
-Intel Core i7-7700HQ CPU 2.80GHz (Kaby Lake), 1 CPU, 8 logical and 4 physical cores
+Intel Core i7-8565U CPU 1.80GHz (Whiskey Lake), 1 CPU, 8 logical and 4 physical cores
 .NET Core SDK=2.2.300
-  [Host]     : .NET Core 2.2.6 (CoreCLR 4.6.27817.03, CoreFX 4.6.27818.02), 64bit RyuJIT
-  DefaultJob : .NET Core 2.2.6 (CoreCLR 4.6.27817.03, CoreFX 4.6.27818.02), 64bit RyuJIT
+  [Host]     : .NET Core 2.2.5 (CoreCLR 4.6.27617.05, CoreFX 4.6.27618.01), 64bit RyuJIT
+  DefaultJob : .NET Core 2.2.5 (CoreCLR 4.6.27617.05, CoreFX 4.6.27618.01), 64bit RyuJIT
 </code></pre>
 <pre><code></code></pre>
 
 <table>
 <thead><tr><th>     Method</th><th>N</th><th>Mean</th><th>Error</th><th>StdDev</th><th>Gen 0</th><th>Gen 1</th><th>Gen 2</th><th>Allocated</th>
 </tr>
-</thead><tbody><tr><td>TestingArrayList</td><td>1000</td><td>2,432.9 us</td><td>54.703 us</td><td>152.49 us</td><td>19.5313</td><td>-</td><td>-</td><td>63.09 KB</td>
-</tr><tr><td>TestingObjectList</td><td>1000</td><td>2,031.4 us</td><td>68.747 us</td><td>199.45 us</td><td>19.5313</td><td>-</td><td>-</td><td>63.09 KB</td>
-</tr><tr><td>TestingIntList</td><td>1000</td><td>340.3 us</td><td>8.701 us</td><td>25.38 us</td><td>2.4414</td><td>-</td><td>-</td><td>8.23 KB</td>
+</thead><tbody><tr><td>TestingArrayList</td><td>1000</td><td>1,929.4 us</td><td>18.8946 us</td><td>16.7496 us</td><td>13.6719</td><td>-</td><td>-</td><td>63.09 KB</td>
+</tr><tr><td>TestingObjectList</td><td>1000</td><td>2,092.7 us</td><td>22.8327 us</td><td>21.3577 us</td><td>11.7188</td><td>-</td><td>-</td><td>63.09 KB</td>
+</tr><tr><td>TestingIntList</td><td>1000</td><td>220.0 us</td><td>0.9243 us</td><td>0.8194 us</td><td>1.9531</td><td>-</td><td>-</td><td>8.23 KB</td>
 </tr></tbody></table>
 </body>
 </html>

@@ -1,0 +1,82 @@
+// Validating benchmarks:
+// ***** BenchmarkRunner: Start   *****
+// ***** Found 7 benchmark(s) in total *****
+// ***** Building 1 exe(s) in Parallel: Start   *****
+// start dotnet restore  /p:UseSharedCompilation=false /p:BuildInParallel=false /m:1 in C:\dev\BenchmarkExamples\src\BenchmarkExamples\bin\Release\netcoreapp2.2\51588468-c4cc-4e21-9ed8-86f774763962
+// command took 1.33s and exited with 0
+// start dotnet build -c Release  --no-restore /p:UseSharedCompilation=false /p:BuildInParallel=false /m:1 in C:\dev\BenchmarkExamples\src\BenchmarkExamples\bin\Release\netcoreapp2.2\51588468-c4cc-4e21-9ed8-86f774763962
+// command took 2.52s and exited with 0
+// ***** Done, took 00:00:03 (3.98 sec)   *****
+// Found 7 benchmarks:
+//   CollectionReturnTypeBenchmark.ListAsList: DefaultJob [N=100]
+//   CollectionReturnTypeBenchmark.ListAsIList: DefaultJob [N=100]
+//   CollectionReturnTypeBenchmark.ListAsIEnumerable: DefaultJob [N=100]
+//   CollectionReturnTypeBenchmark.ListAsICollection: DefaultJob [N=100]
+//   CollectionReturnTypeBenchmark.IListToList: DefaultJob [N=100]
+//   CollectionReturnTypeBenchmark.IEnumerableToList: DefaultJob [N=100]
+//   CollectionReturnTypeBenchmark.ICollectionToList: DefaultJob [N=100]
+
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)// **************************
+// Benchmark: CollectionReturnTypeBenchmark.ListAsList: DefaultJob [N=100]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet "51588468-c4cc-4e21-9ed8-86f774763962.dll" --benchmarkName "BenchmarkExamples.CollectionReturnType.CollectionReturnTypeBenchmark.ListAsList(N: 100)" --job "Default" --benchmarkId 0 in C:\dev\BenchmarkExamples\src\BenchmarkExamples\bin\Release\netcoreapp2.2\51588468-c4cc-4e21-9ed8-86f774763962\bin\Release\netcoreapp2.2
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// Runtime=.NET Core 2.2.5 (CoreCLR 4.6.27617.05, CoreFX 4.6.27618.01), 64bit RyuJIT
+// GC=Concurrent Workstation
+// Job: DefaultJob
+
+OverheadJitting  1: 1 op, 318700.00 ns, 318.7000 us/op
+WorkloadJitting  1: 1 op, 645400.00 ns, 645.4000 us/op
+
+OverheadJitting  2: 16 op, 209600.00 ns, 13.1000 us/op
+WorkloadJitting  2: 16 op, 246400.00 ns, 15.4000 us/op
+
+WorkloadPilot    1: 16 op, 21200.00 ns, 1.3250 us/op
+WorkloadPilot    2: 32 op, 80400.00 ns, 2.5125 us/op
+WorkloadPilot    3: 64 op, 107800.00 ns, 1.6844 us/op
+WorkloadPilot    4: 128 op, 269200.00 ns, 2.1031 us/op
+WorkloadPilot    5: 256 op, 499800.00 ns, 1.9523 us/op
+WorkloadPilot    6: 512 op, 914700.00 ns, 1.7865 us/op
+WorkloadPilot    7: 1024 op, 1598800.00 ns, 1.5613 us/op
+WorkloadPilot    8: 2048 op, 2427300.00 ns, 1.1852 us/op
+WorkloadPilot    9: 4096 op, 4971700.00 ns, 1.2138 us/op
+WorkloadPilot   10: 8192 op, 10272200.00 ns, 1.2539 us/op
+WorkloadPilot   11: 16384 op, 20074600.00 ns, 1.2253 us/op
+WorkloadPilot   12: 32768 op, 40555400.00 ns, 1.2377 us/op
+WorkloadPilot   13: 65536 op, 76341000.00 ns, 1.1649 us/op
+WorkloadPilot   14: 131072 op, 150160800.00 ns, 1.1456 us/op
+WorkloadPilot   15: 262144 op, 302201100.00 ns, 1.1528 us/op
+WorkloadPilot   16: 524288 op, 588549300.00 ns, 1.1226 us/op
+
+OverheadWarmup   1: 524288 op, 777100.00 ns, 1.4822 ns/op
+OverheadWarmup   2: 524288 op, 808900.00 ns, 1.5429 ns/op
+OverheadWarmup   3: 524288 op, 763200.00 ns, 1.4557 ns/op
+OverheadWarmup   4: 524288 op, 806700.00 ns, 1.5387 ns/op
+OverheadWarmup   5: 524288 op, 760400.00 ns, 1.4503 ns/op
+
+OverheadActual   1: 524288 op, 791700.00 ns, 1.5100 ns/op
+OverheadActual   2: 524288 op, 671900.00 ns, 1.2815 ns/op
+OverheadActual   3: 524288 op, 694500.00 ns, 1.3247 ns/op
+OverheadActual   4: 524288 op, 704800.00 ns, 1.3443 ns/op
+OverheadActual   5: 524288 op, 671800.00 ns, 1.2814 ns/op
+OverheadActual   6: 524288 op, 705600.00 ns, 1.3458 ns/op
+OverheadActual   7: 524288 op, 736900.00 ns, 1.4055 ns/op
+OverheadActual   8: 524288 op, 721600.00 ns, 1.3763 ns/op
+OverheadActual   9: 524288 op, 713300.00 ns, 1.3605 ns/op
+OverheadActual  10: 524288 op, 870300.00 ns, 1.6600 ns/op
+OverheadActual  11: 524288 op, 801500.00 ns, 1.5287 ns/op
+OverheadActual  12: 524288 op, 742300.00 ns, 1.4158 ns/op
+OverheadActual  13: 524288 op, 796300.00 ns, 1.5188 ns/op
+OverheadActual  14: 524288 op, 828100.00 ns, 1.5795 ns/op
+OverheadActual  15: 524288 op, 738500.00 ns, 1.4086 ns/op
+OverheadActual  16: 524288 op, 803200.00 ns, 1.5320 ns/op
+OverheadActual  17: 524288 op, 744800.00 ns, 1.4206 ns/op
+OverheadActual  18: 524288 op, 737300.00 ns, 1.4063 ns/op
+OverheadActual  19: 524288 op, 740500.00 ns, 1.4124 ns/op
+OverheadActual  20: 524288 op, 746300.00 ns, 1.4235 ns/op
+
+WorkloadWarmup   1: 524288 op, 589640200.00 ns, 1.1246 us/op
+WorkloadWarmup   2: 524288 op, 585562800.00 ns, 1.1169 us/op

@@ -1,5 +1,6 @@
 ﻿using BenchmarkDotNet.Running;
 using BenchmarkExamples.Boxing;
+using BenchmarkExamples.CollectionReturnType;
 using BenchmarkExamples.Dynamic;
 using BenchmarkExamples.ForLoop;
 using BenchmarkExamples.Serialization;
@@ -19,7 +20,8 @@ namespace BenchmarkExamples
             "Yield",
             "Dynamic",
             "SyncAsync",
-            "ForLoop"
+            "ForLoop",
+            "CollectionReturnType"
         };
         static void Main(string[] args)
         {
@@ -51,7 +53,9 @@ namespace BenchmarkExamples
                 case "ForLoop":
                     var forLoop = BenchmarkRunner.Run<ForLoopBenchmark>();
                     break;
-
+                case "CollectionReturnType":
+                    var returnType = BenchmarkRunner.Run<CollectionReturnTypeBenchmark>();
+                    break;
             }
         }
     }
