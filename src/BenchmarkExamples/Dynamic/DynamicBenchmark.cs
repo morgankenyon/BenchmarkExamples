@@ -12,70 +12,86 @@ namespace BenchmarkExamples.Dynamic
         [Params(100)]
         public int N;
 
-        [Benchmark]
-        public void SumOneToN()
+        [GlobalSetup]
+        public void GlobalS()
         {
-            var sum = 0;
-            for(int i = 0; i < N; i++)
-                sum += i;
+            StringConcat_V = "";
+            DynamicStringConcat_V = "";
+            FormatUser_V = new DynamicUser("John Billon", "Arlington", 23);
+            DynamicallyFormatUser_V = FormatUser_V;
+            StructFormatUser_V = new DynamicStruct();
+            StructDynamicallyFormatUser_V = StructFormatUser_V;
         }
 
+        private string StringConcat_V;
         [Benchmark]
-        public void StringConcat()
+        public object StringConcat()
         {
-            string concated = "";
+            var StringConcat_V = this.StringConcat_V;
             string message = "Message";
             for (int i = 0; i < N; i++)
-                concated = message + concated.ToString();
+                StringConcat_V = this.StringConcat_V + StringConcat_V;
+            return StringConcat_V;
         }
 
+        private dynamic DynamicStringConcat_V;
         [Benchmark]
-        public void DynamicStringConcat()
+        public object DynamicStringConcat()
         {
-            dynamic concated = "";
+            var DynamicStringConcat_V = this.DynamicStringConcat_V;
             string message = "Message";
             for (int i = 0; i < N; i++)
-                concated = message + concated.ToString();
+                DynamicStringConcat_V = this.DynamicStringConcat_V + DynamicStringConcat_V;
+            return DynamicStringConcat_V;
         }
 
+
+        public DynamicUser FormatUser_V;
         [Benchmark]
-        public void FormatUser()
+        public object FormatUser()
         {
+            var FormatUser_V = this.FormatUser_V;
             for (int i = 0; i < N; i++)
             {
-                var user = new DynamicUser("John Billon", "Arlington", 23);
-                user.UpdateName("Crazy");
+                FormatUser_V.UpdateName("Crazy");
             }
+            return FormatUser_V;
         }
 
+        private dynamic DynamicallyFormatUser_V;
         [Benchmark]
-        public void DynamicallyFormatUser()
+        public object DynamicallyFormatUser()
         {
+            var DynamicallyFormatUser_V = this.DynamicallyFormatUser_V;
             for (int i = 0; i < N; i++)
             {
-                dynamic user = new DynamicUser("John Billon", "Arlington", 23);
-                user.UpdateName("Crazy");
+                DynamicallyFormatUser_V.UpdateName("Crazy");
             }
+            return DynamicallyFormatUser_V;
         }
 
+        private DynamicStruct StructFormatUser_V;
         [Benchmark]
-        public void StructFormatUser()
+        public object StructFormatUser()
         {
+            var StructFormatUser_V = this.StructFormatUser_V;
             for (int i = 0; i < N; i++)
             {
-                var user = new DynamicStruct("John Billon", "Arlington", 23);
-                user.UpdateName("Crazy");
+                StructFormatUser_V.UpdateName("Crazy");
             }
+            return StructFormatUser_V;
         }
 
+        public dynamic StructDynamicallyFormatUser_V;
         [Benchmark]
-        public void StructDynamicallyFormatUser()
+        public object StructDynamicallyFormatUser()
         {
+            var StructDynamicallyFormatUser_V = this.StructDynamicallyFormatUser_V;
             for (int i = 0; i < N; i++)
             {
-                dynamic user = new DynamicStruct("John Billon", "Arlington", 23);
-                user.UpdateName("Crazy");
+                StructDynamicallyFormatUser_V.UpdateName("Crazy");
             }
+            return StructDynamicallyFormatUser_V;
         }
     }
 }
